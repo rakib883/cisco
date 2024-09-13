@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a{
+    color:red;
+    background-color: gray;
+}
+
+.mainFont{
+    font-family: "Inter", sans-serif;
+}
