@@ -1,7 +1,7 @@
 
 import { useSelector } from 'react-redux';
 import { Navigate,} from 'react-router-dom';
-import Cart from './Cart';
+import CartProduct from './CartProduct';
 
 const CartPrivate = () => {
   const userProfile = useSelector((state) => state?.myStore?.newLoggedUser);
@@ -10,10 +10,9 @@ const CartPrivate = () => {
   
 
   if (isAuthenticated) {
-    return <Cart/>
+    return <CartProduct/>
 
   } else {
-    window.alert("You need to log in to access this page.");
     return <Navigate to="/login" replace />;
   }
 };

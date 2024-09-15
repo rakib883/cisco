@@ -403,7 +403,6 @@ useEffect(()=>{
                   <div className="main">{productData.message}</div> :
                   productData.map((item)=>{
                     const singleData =  buttonQuantity.find((productItem)=>productItem?.id ===item?.id)
-                    console.log("women data",singleData?.quantity)
                      return(
                      <ProductList key={item?.id} quantity={singleData?.quantity}  item={item}/>
                     )

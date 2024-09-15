@@ -4,6 +4,7 @@ import './index.css'
 import 'rsuite/dist/rsuite.min.css';
 import {
   createBrowserRouter,
+  Outlet,
   RouterProvider,
 } from "react-router-dom";
 import App from './App';
@@ -17,6 +18,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import Blog from './Page/Blog';
 import Cart from './Page/Cart';
 import CartPrivet from './Page/CartPrivet';
+import CartProduct from './Page/CartProduct';
+import OrderPage from './UI/OrderPage';
+import Sucesss from './Page/sucesss';
+import Cancell from './Page/Cancell';
 
 const router = createBrowserRouter([
   {
@@ -72,12 +77,31 @@ const router = createBrowserRouter([
         element:<CartPrivet/>,
         children:[
           {
-            path:"cart",
-            element:<Cart/>
-          }
+             path:"",
+             element:<CartProduct/>,
+             children:[
+                {
+                  path:"",
+                  element:<Cart/>
+                },
+                {
+                  path:"order-now",
+                  element:<OrderPage/>
+                }
+             ]
+             
+          },
         ]
         
        },
+       {
+         path:"/pament-success",
+         element:<Sucesss/>,
+       },
+       {
+        path:"/pament-cancell",
+        element:<Cancell/>
+      },
       
        {
         path:"*",

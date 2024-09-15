@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   CartData:[],
-  newLoggedUser:{}
+  newLoggedUser:null
 }
 
 export const myState = createSlice({
@@ -11,6 +11,9 @@ export const myState = createSlice({
   reducers: {
        loggedUser:(state,action)=>{
         state.newLoggedUser = action.payload
+       },
+       removeUser:(state)=>{
+         state.newLoggedUser = null
        },
       addToCart:(state,action)=>{
         const  existingData = state.CartData.find((item)=>item?.id === action.payload?.id)
@@ -37,6 +40,6 @@ export const myState = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { loggedUser,addToCart,decrementProduct,cartItemRemove} = myState.actions
+export const { loggedUser,addToCart,decrementProduct,cartItemRemove,removeUser} = myState.actions
 
 export default myState.reducer

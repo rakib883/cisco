@@ -5,6 +5,7 @@ import { HiMiniXMark } from "react-icons/hi2";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Profile from "../../UI/Profile";
 const Header = () => {
 
      // menu items area start
@@ -22,6 +23,9 @@ const Header = () => {
     //  redux items area srarrt
     const userSelectorData = useSelector((data)=>data?.myStore?.newLoggedUser?.user)
     const cartDataItem = useSelector((item)=>item?.myStore?.CartData)
+    
+    // open profile area start
+    const [userProfile,setUserProfile] = useState(false)
 
   return (
     <div className="bg-white shadow-xl sticky top-0 z-50"> 
@@ -68,11 +72,18 @@ const Header = () => {
                       <div className="cart hover:bg-gray-200 h-10 w-10 duration-300 rounded-full flex justify-center items-center">
                          {
                             userSelectorData ?
-                            <div className="profile">
-                                <div className="image-area h-[30px] w-[30px] rounded-full cursor-pointer">
+                            <div  className="profile">
+                                <div onClick={()=>setUserProfile(!userProfile)} className="image-area relative h-[30px] w-[30px] rounded-full cursor-pointer">
                                     <img className="w-full h-full rounded-full" src={userSelectorData?.photoURL} alt="" />
+                                     {
+                                        userProfile &&
+                                        <div className="profile absolute top-12 right-[-50px] w-[300px]">
+                                        <div className="items mx-8">
+                                            <Profile imageLink={userSelectorData?.photoURL} email={userSelectorData?.email} userName={userSelectorData?.displayName}/>
+                                        </div>
+                                        </div>
+                                     }
                                 </div>
-                                <div className="title"></div>
                             </div> :
                             <Link to="/login">
                                 <BiUser className=" text-[25px] cursor-pointer" />

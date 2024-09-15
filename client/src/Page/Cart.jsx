@@ -7,6 +7,7 @@ import { IoMdColorFill } from "react-icons/io";
 import { IoResize } from "react-icons/io5";
 import { addToCart, cartItemRemove, decrementProduct } from "../Redux/slice";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const Cart = () => {
@@ -171,9 +172,9 @@ const Cart = () => {
                                     </div>
                                 </div>
                            </div>
-                           <button className="button bg-black rounded-2xl text-center cursor-pointer hover:bg-gray-900 duration-400">
+                           <Link to="/user/order-now" className="button bg-black rounded-2xl text-center cursor-pointer hover:bg-gray-900 duration-400">
                               <p className=" text-white text-center text-[16px] p-2 font-semibold">Check out</p>
-                           </button>
+                           </Link>
 
                             
                         </div>
