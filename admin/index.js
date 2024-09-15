@@ -3,6 +3,9 @@ import mongoose from "mongoose";
 import cors from "cors";
 import { blog, explor, product, productDepardment, review, trending } from "./Conastance/index.mjs";
 import dotenv from 'dotenv';
+import Stripe from "stripe";
+
+
 
 // Initialize dotenv to load environment variables
 dotenv.config();
@@ -95,6 +98,43 @@ app.get("/product/size/:id", (req, res) => {
   }
   return res.json(sizeFilter);
 });
+
+const stripe = new Stripe("sk_test_51PWscOL3BkBJk9RpLl0RojVbDLL5k1fzCtG9cetkJ1uH6Hd2LsfnTYSUC2Icqq5m9MQfRQWmNlcqIAnjUpVCDFZH00N1nAm0W7")
+
+app.post('/create-checkout-session', async (req, res) => {
+     const producrData = req.body
+
+     const lineItem = producrData.map((item)=>({
+          price_data:{
+            currency:"usd",
+            product_data:{
+              name:item?.name,
+              images:[item?.image]
+            },
+            unit_amount:item?.price * 100
+          },
+          quantity:item?.quantity
+     }))
+
+      try{
+         const session = await stripe.checkout.sessions.create({
+            payment_method_types:["card"],
+            line_items:lineItem,
+            mode:"payment",
+            success_url:"http://localhost:5173/",
+            cancel_url:"http://localhost:5173/"
+         })
+
+         res.json(session)
+         console.log(session)
+      }catch(error){
+        console.log(error)
+      }
+    
+});
+
+
+
 
 // Start the server
 app.listen(port, () => {
