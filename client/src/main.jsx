@@ -20,7 +20,7 @@ import Cart from './Page/Cart';
 import CartPrivet from './Page/CartPrivet';
 import CartProduct from './Page/CartProduct';
 import OrderPage from './UI/OrderPage';
-import Sucesss from './Page/sucesss';
+import Sucess from './Page/sucess';
 import Cancell from './Page/Cancell';
 import Account from './Page/Account';
 
@@ -101,7 +101,7 @@ const router = createBrowserRouter([
        },
        {
          path:"/pament-success",
-         element:<Sucesss/>,
+         element:<Sucess/>,
        },
        {
         path:"/pament-cancell",
