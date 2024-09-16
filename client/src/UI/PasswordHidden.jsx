@@ -20,7 +20,7 @@ const PasswordHidden = ({setinputValue,valueData,}) => {
   // }
   return (
     <InputGroup inside style={styles}>
-      <Input value={valueData}   onChange={setinputValue}  type={visible ? 'text' : 'password'} placeholder="Inter password" />
+      <Input  value={valueData}   onChange={setinputValue}  type={visible ? 'text' : 'password'} placeholder="Inter password" />
       <InputGroup.Button onClick={handleChange}>
         {visible ? <EyeIcon /> : <EyeSlashIcon />}
       </InputGroup.Button>

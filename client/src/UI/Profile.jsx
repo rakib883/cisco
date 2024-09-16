@@ -10,7 +10,7 @@ import { getAuth, signOut } from "firebase/auth";
 import app from "../Firebase/Firebase";
 import { useDispatch } from "react-redux";
 import { removeUser } from "../Redux/slice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Profile = ({imageLink,userName,email}) => {
     const dispatch = useDispatch()
@@ -44,22 +44,22 @@ const signOutHandeler =()=>{
                 <div className="bo">
                     <Border/>
                 </div>
-                 <div className=" flex flex-col gap-2">
-                    <div className="profile flex items-center gap-2 text-[14px] hover:bg-gray-300 py-2 px-2 rounded-md">
+                 <div className=" flex flex-col gap-2"> 
+                    <Link style={{ textDecoration: 'none' }} to="/user/account" className="profile flex items-center gap-2 text-[14px] hover:bg-gray-300 py-2 px-2 rounded-md">
                         <div className="icon">
                         <FaRegUser className="text-xl" />
                         </div>
                         <div className="text">
                             <p>My account</p>
                         </div>
-                    </div>
+                    </Link>
                     <div className="profile flex items-center gap-2 text-[14px] hover:bg-gray-300 py-2 px-2 rounded-md">
                         <div className="icon">
                         <ImFileWord className="text-xl" />
                         </div>
-                        <div className="text">
+                        <Link to="user/order-now" className="text">
                             <p>My order</p>
-                        </div>
+                        </Link>
                     </div>
                     <div className="profile flex items-center gap-2 text-[14px] hover:bg-gray-300 py-2 px-2 rounded-md">
                         <div className="icon">

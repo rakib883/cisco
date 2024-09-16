@@ -22,6 +22,7 @@ import CartProduct from './Page/CartProduct';
 import OrderPage from './UI/OrderPage';
 import Sucesss from './Page/sucesss';
 import Cancell from './Page/Cancell';
+import Account from './Page/Account';
 
 const router = createBrowserRouter([
   {
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
                 {
                   path:"",
                   element:<Cart/>
+                },
+                {
+                  path:"account",
+                  element:<Account/>
                 },
                 {
                   path:"order-now",

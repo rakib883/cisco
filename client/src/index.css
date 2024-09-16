@@ -10,3 +10,12 @@ a{
 .mainFont{
     font-family: "Inter", sans-serif;
 }
+
+.custom-border::after{
+    position: absolute;
+    background:#0ea5e9;
+    content: '';
+    width:100%;
+    height:2px;
+    bottom: -18px;
+}
