@@ -4,7 +4,6 @@ import './index.css'
 import 'rsuite/dist/rsuite.min.css';
 import {
   createBrowserRouter,
-  Outlet,
   RouterProvider,
 } from "react-router-dom";
 import App from './App';
@@ -20,7 +19,6 @@ import Cart from './Page/Cart';
 import CartPrivet from './Page/CartPrivet';
 import CartProduct from './Page/CartProduct';
 import OrderPage from './UI/OrderPage';
-import Sucess from './Page/sucess';
 import Cancell from './Page/Cancell';
 import Account from './Page/Account';
 
@@ -99,10 +97,7 @@ const router = createBrowserRouter([
         ]
         
        },
-       {
-         path:"/pament-success",
-         element:<Sucess/>,
-       },
+      
        {
         path:"/pament-cancell",
         element:<Cancell/>
