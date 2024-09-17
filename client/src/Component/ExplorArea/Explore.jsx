@@ -35,23 +35,23 @@ const Explore = () => {
              <div className="button-area">
                 <div className="conten bg-white drop-shadow-xl max-w-3xl mx-auto rounded-full">
                    <div className="content flex justify-between">
-                        <div  onClick={()=>setExplor(1)} className={` ${explor === 1 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 md:px-6 `}>
+                        <div  onClick={()=>setExplor(1)} className={` ${explor === 1 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 px-2 md:px-6 `}>
                             < RiWomenLine className=" text-xl mt-[2px]" />
                             <p className=" font-sans font-semibold">Women</p> 
                         </div>
-                        <div  onClick={()=>setExplor(2)} className={` ${explor === 2 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 md:px-6 `}>
+                        <div  onClick={()=>setExplor(2)} className={` ${explor === 2 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 px-2 md:px-6 `}>
                             < IoIosMale className=" text-xl mt-[2px]" />
                             <p className=" font-sans font-semibold">Man</p> 
                         </div>
-                        <div  onClick={()=>setExplor(3)} className={` ${explor === 3 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 md:px-6 `}>
+                        <div  onClick={()=>setExplor(3)} className={` ${explor === 3 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 px-2 md:px-6 `}>
                             < FaChild className=" text-xl mt-[2px]" />
                             <p className=" font-sans font-semibold">Kids</p> 
                         </div>
-                        <div  onClick={()=>setExplor(4)} className={` ${explor === 4 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 md:px-6 `}>
+                        <div  onClick={()=>setExplor(4)} className={` ${explor === 4 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 px-2 md:px-6 `}>
                             < MdOutlineSportsBasketball className=" text-xl mt-[2px]" />
                             <p className=" font-sans font-semibold">Sports</p> 
                         </div>
-                        <div  onClick={()=>setExplor(5)} className={` ${explor === 5 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 md:px-6 `}>
+                        <div  onClick={()=>setExplor(5)} className={` ${explor === 5 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 px-2 md:px-6 `}>
                             < GiJeweledChalice className=" text-xl mt-[2px]" />
                             <p className=" font-sans font-semibold">Beuty</p> 
                         </div>
@@ -60,7 +60,7 @@ const Explore = () => {
                 </div>
              </div>
              <div className="main">
-                 <div className="content grid grid-cols-1 md:grid-cols-3 gap-6 my-12 ">
+                 <div className="content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-12 ">
                     {
                         explorData.map(item=>
                             <div key={item?.downImage} className="main rounded-3xl overflow-hidden hover:shadow-2xl group">

@@ -220,8 +220,8 @@ function Slider({dataLink}) {
           
         </Swiper>
         <div className="icon flex gap-8 absolute -top-20 md:-top-20 right-0 ">
-           <div className="custom-prev cursor-pointer text-5xl"><button className="text-[25px]">‹</button></div>
-           <div className="custom-next cursor-pointer text-5xl"> <button className="text-[25px]">›</button></div>
+           <div className="custom-prev cursor-pointer text-5xl"><button className="text-[25px] md:text-[35px]">‹</button></div>
+           <div className="custom-next cursor-pointer text-5xl"> <button className="text-[25px] md:text-[35px]">›</button></div>
        </div>
       </div>
     </div>
