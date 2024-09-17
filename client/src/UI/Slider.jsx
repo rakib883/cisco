@@ -100,7 +100,7 @@ function Slider({dataLink}) {
                         </Link>
                         {/* image inner area */}
                         <div className="bottom w-full  justify-center items-center group-hover:bottom-3 duration-300 absolute bottom-[-100px]  ">
-                            <div className="content flex gap-4 justify-center items-center">
+                            <div className="content flex gap-1 md:gap-4 justify-center items-center">
                               <div onClick={()=>setSize("XS")} className="item">
                                   <div className="item bg-white px-3 py-2 cursor-pointer hover:bg-black hover:text-white duration-300 rounded-lg">
                                       <p className=" uppercase font-sans font-semibold">XS</p>
@@ -163,7 +163,7 @@ function Slider({dataLink}) {
                                      quantity:1
                                    }))}
                                   className="button">
-                                     <button className=" bg-black shadow-xl rounded-full text-[12px] font-sans text-white px-3 py-1 flex items-center gap-2 "> <IoBagHandle  className="text-[12px] "/> <p className="mt-[2px]">Add to bag</p> </button>
+                                     <button className=" bg-black shadow-xl rounded-full text-[12px] font-sans text-white px-1 md:px-3 py-1 flex items-center md:gap-2 "> <IoBagHandle  className="text-[12px] "/> <p className="mt-[2px]">Add to bag</p> </button>
                                   </div>
                                   <div className="view">
                                     <Link to={`product/${item?.id}`} className="button">
@@ -177,7 +177,7 @@ function Slider({dataLink}) {
                         </div>
                     </div>
                     <div className="text-area">
-                      <div className="color-area my-4 flex gap-4">
+                      <div className="color-area my-4 flex  gap-4 ">
                         <div onClick={()=>setBorder({id:item?.id,number:1,color:"pink"})} className={` ${border.id === item?.id && border.number === 1 && " border border-pink-700 "}  flex justify-center items-center h-5  w-5 rounded-full `}>
                              <div className="inner bg-pink-700 h-4 w-4 rounded-full"></div>
                         </div>
@@ -202,12 +202,12 @@ function Slider({dataLink}) {
                          <div className="catagory">
                            <p className="font-sans font-medium">Catagory :{item?.category}</p>
                          </div>
-                         <div className="prize-rating my-2 flex justify-between items-center">
-                            <div className="price border-2 rounded-lg border-[#22c55e] inline-block">
+                         <div className="prize-rating md:my-2 flex justify-between items-center">
+                            <div className="price my-4 md:my-0 border-2 rounded-lg border-[#22c55e] inline-block">
                                <p className=" px-2 font-sans font-semibold">${item?.price}</p>
                             </div>
-                            <div className="rating flex items-center gap-2 font-sans">
-                              <FaStar className=" text-[#fbbf24]" /> <p>{item?.rating}</p><p>(98 review)</p>
+                            <div className="rating my-1 md:my-0 flex items-center gap-2 font-sans">
+                              <FaStar className=" text-[#fbbf24]" /> <p>{item?.rating}</p><p className="mt-[-2px]">(98 review)</p>
                             </div>
                          </div>
                       </div>
@@ -219,9 +219,9 @@ function Slider({dataLink}) {
            }
           
         </Swiper>
-        <div className="icon flex gap-8 absolute -top-20 right-0 ">
-           <div className="custom-prev cursor-pointer text-5xl"><button>‹</button></div>
-           <div className="custom-next cursor-pointer text-5xl"> <button>›</button></div>
+        <div className="icon flex gap-8 absolute -top-20 md:-top-20 right-0 ">
+           <div className="custom-prev cursor-pointer text-5xl"><button className="text-[25px]">‹</button></div>
+           <div className="custom-next cursor-pointer text-5xl"> <button className="text-[25px]">›</button></div>
        </div>
       </div>
     </div>

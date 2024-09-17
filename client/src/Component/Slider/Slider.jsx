@@ -38,23 +38,23 @@ export default function Slider() {
             {
               sliderData.map((item)=>
                   <SwiperSlide key={item?.image}>
-                    <div  className="content overflow-hidden flex justify-between items-center">
-                      <motion.div className="image"
+                    <div  className="content overflow-hidden md:flex justify-between items-center">
+                      <motion.div className="image flex justify-center items-center"
                         initial={{ opacity: 0, scale: 1.5 }}
                         whileInView={{ opacity: 1, scale:1}}
                         transition={{ duration: 1.5 }}
                       >
-                        <img className="h-[500px]" src={item?.image} alt="" />
+                        <img className=" h-[300px]  md:h-[500px] " src={item?.image} alt="" />
                       </motion.div>
                       <motion.div
                         initial={{x:200,opacity:0}}
                         whileInView={{x:0,opacity:1}}
                         transition={{duration:1.5,x:{type:"spring",stiffness:60}}}
-                      className="text w-[50%] mx-8">
-                        <h1 className="text-[20px] first-letter:uppercase text-right font-sans">{item?.name}</h1>
-                        <h1 className="text-[50px]  font-sans font-semibold text-right">{item?.title}</h1>
-                        <div className="button flex justify-end my-2">
-                            <button className="bg-black rounded-full text-white px-8 py-4 flex gap-2 items-center">
+                      className="text w-full md:w-[50%] md:mx-8 md:leading-[60px] leading-4 ">
+                        <p className="text-[20px] first-letter:uppercase text-center md:text-right  font-sans">{item?.name}</p>
+                        <p className=" text-[16px] md:text-[30px] lg:text-[50px] text-center  font-sans font-semibold md:text-right">{item?.title}</p>
+                        <div className="button flex justify-center md:justify-end my-2">
+                            <button className="bg-black rounded-full text-white md:px-4 lg:px-8 px-2 py-1 md:py-2 lg:py-4 flex gap-2 items-center">
                               <p className="text-lg font-sans">Explor now</p>
                               <CiSearch className="mt-[2px] text-2xl" />
                             </button>

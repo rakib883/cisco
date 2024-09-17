@@ -1,9 +1,9 @@
 
-const Title = ({firstTitle,secendTitle}) => {
+const Title = ({firstTitle}) => {
   return (
     <div>
-        <div className="content mx-10 my-8  flex items-center text-[36px] font-bold">
-            <p className=" text-black ">{firstTitle}</p>. <p className=" text-[#6b7280] mt-[2px]">{secendTitle}</p>
+        <div className="content mx-8 md:mx-10 my-8  flex items-center text-[18px] md:text-[36px] font-bold">
+            <p className=" text-black ">{firstTitle}</p>
         </div>
     </div>
   )

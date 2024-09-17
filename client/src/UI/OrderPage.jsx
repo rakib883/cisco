@@ -124,10 +124,11 @@ const orderHandeler =async()=>{
        })
 
        const session = await response.json()
+       console.log("hello",session?.id)
        const result = stripe.redirectToCheckout({
         sessionId:session.id
        })
-
+    
     }catch(error){
       console.log(error)
     }
@@ -139,6 +140,8 @@ const orderHandeler =async()=>{
   return (
     <div>
       <div className="content mx-20 my-8">
+        {
+          reduxData.length > 0 ? 
         <div className="content">
           <div className="title">
             <InnerTitle title="Checkout now" />
@@ -375,7 +378,11 @@ const orderHandeler =async()=>{
               </div>
             </div>
           </div>
+        </div> :
+        <div className="main text-center">
+           <InnerTitle title="Your cart is empty" />
         </div>
+        }
       </div>
     </div>
   );

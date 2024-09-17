@@ -24,6 +24,10 @@ export const myState = createSlice({
         }
 
       },
+
+      emptyCard:(state)=>{
+         state.CartData = []
+      },
       cartItemRemove:(state,action)=>{
         state.CartData = state.CartData.filter((item)=>item?.id !== action?.payload?.id)
       },
@@ -40,6 +44,6 @@ export const myState = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { loggedUser,addToCart,decrementProduct,cartItemRemove,removeUser} = myState.actions
+export const { loggedUser,addToCart,decrementProduct,cartItemRemove,removeUser,emptyCard} = myState.actions
 
 export default myState.reducer

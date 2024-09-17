@@ -8,7 +8,7 @@ const DiscoverMore = () => {
     <div>
         <div className="content mt-[100px]">
             <div className="title">
-                <Title firstTitle="Discover more" secendTitle="Good things are waiting for you"/>
+                <Title firstTitle="Discover more. Good things are waiting for you"/>
             </div>
             <div className="slider">
                <DiscoverSlider/>

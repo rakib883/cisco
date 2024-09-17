@@ -35,23 +35,23 @@ const Explore = () => {
              <div className="button-area">
                 <div className="conten bg-white drop-shadow-xl max-w-3xl mx-auto rounded-full">
                    <div className="content flex justify-between">
-                        <div  onClick={()=>setExplor(1)} className={` ${explor === 1 && "bg-black text-white" }  womon cursor-pointer inline-flex items-center gap-2 text-black   rounded-full py-3 px-6`}>
+                        <div  onClick={()=>setExplor(1)} className={` ${explor === 1 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 md:px-6 `}>
                             < RiWomenLine className=" text-xl mt-[2px]" />
                             <p className=" font-sans font-semibold">Women</p> 
                         </div>
-                        <div  onClick={()=>setExplor(2)} className={` ${explor === 2 && "bg-black text-white" }  womon cursor-pointer inline-flex items-center gap-2 text-black   rounded-full py-3 px-6`}>
+                        <div  onClick={()=>setExplor(2)} className={` ${explor === 2 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 md:px-6 `}>
                             < IoIosMale className=" text-xl mt-[2px]" />
                             <p className=" font-sans font-semibold">Man</p> 
                         </div>
-                        <div  onClick={()=>setExplor(3)} className={` ${explor === 3 && "bg-black text-white" }  womon cursor-pointer inline-flex items-center gap-2 text-black   rounded-full py-3 px-6`}>
+                        <div  onClick={()=>setExplor(3)} className={` ${explor === 3 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 md:px-6 `}>
                             < FaChild className=" text-xl mt-[2px]" />
                             <p className=" font-sans font-semibold">Kids</p> 
                         </div>
-                        <div  onClick={()=>setExplor(4)} className={` ${explor === 4 && "bg-black text-white" }  womon cursor-pointer inline-flex items-center gap-2 text-black   rounded-full py-3 px-6`}>
+                        <div  onClick={()=>setExplor(4)} className={` ${explor === 4 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 md:px-6 `}>
                             < MdOutlineSportsBasketball className=" text-xl mt-[2px]" />
                             <p className=" font-sans font-semibold">Sports</p> 
                         </div>
-                        <div  onClick={()=>setExplor(5)} className={` ${explor === 5 && "bg-black text-white" }  womon cursor-pointer inline-flex items-center gap-2 text-black   rounded-full py-3 px-6`}>
+                        <div  onClick={()=>setExplor(5)} className={` ${explor === 5 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 md:px-6 `}>
                             < GiJeweledChalice className=" text-xl mt-[2px]" />
                             <p className=" font-sans font-semibold">Beuty</p> 
                         </div>

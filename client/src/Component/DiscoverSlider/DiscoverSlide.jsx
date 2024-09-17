@@ -64,7 +64,7 @@ function DiscoverSlider() {
                         <div className="text flex flex-col justify-between">
                            <div className="text my-4">
                                 <p className=" text-base text-[#60738d] font-sans first-letter:uppercase">{item?.name}</p>
-                                <h1 className=" text-[24px] font-bold font-sans first-letter:uppercase">{item?.title}</h1>
+                                <p className=" text-[24px] font-bold font-sans first-letter:uppercase">{item?.title}</p>
                            </div>
                            <div className="button my-8">
                               <button className="text-[#60738d] font-sans bg-white px-4 py-2 rounded-full shadow-xl">Show me all</button>

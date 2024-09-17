@@ -21,6 +21,7 @@ import CartProduct from './Page/CartProduct';
 import OrderPage from './UI/OrderPage';
 import Cancell from './Page/Cancell';
 import Account from './Page/Account';
+import Sucess from './Page/Sucess';
 
 const router = createBrowserRouter([
   {
@@ -97,7 +98,11 @@ const router = createBrowserRouter([
         ]
         
        },
-      
+       {
+        path:"/pament-successful",
+        element:<Sucess/>
+       },
+        
        {
         path:"/pament-cancell",
         element:<Cancell/>
