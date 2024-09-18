@@ -25,7 +25,7 @@ const SingleProduct = () => {
   const [product,setProduct] = useState(null)
    useEffect(()=>{
      const incomingData = async()=>{
-         const response = await FachingData(`http://localhost:3000/product/${id}`)
+         const response = await FachingData(`https://cisco-sigma.vercel.app/product/${id}`)
          setProduct(response)
      }
      incomingData()
@@ -42,7 +42,7 @@ const SingleProduct = () => {
   const [reviewData,setReview] = useState([])
   useEffect(()=>{
     const incomingData = async()=>{
-       const response = await FachingData("http://localhost:3000/review")
+       const response = await FachingData("https://cisco-sigma.vercel.app/review")
        setReview(response)
     }
     incomingData()

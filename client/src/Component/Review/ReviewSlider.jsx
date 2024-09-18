@@ -46,13 +46,13 @@ export const ReviewSlider = ({userReview})=>{
             userReview.map((item)=>
               <SwiperSlide className="py-16" key={item?.id}>
                  <div className="all-content text-center cursor-pointer py-2 ">
-                    <h1 className="text-[24px] text-[#1c2331] leading-[30px]">{item?.des}</h1>
+                    <h1 className="text-[14px] md:text-[16px] font-sans lg:text-[20px] text-[#1c2331] leading-[30px]">{item?.des}</h1>
                  </div>
                  <div className="image flex justify-center items-center">
                     <img className="h-[50px] w-[50px] rounded-full" src={item?.image} alt="" />
                  </div>
                  <div className="name flex justify-center items-center">
-                   <p className="font-semibold text-xl">{item?.name}</p>
+                   <p className="font-semibold text-[14px]">{item?.name}</p>
                  </div>
                  <div className="review flex justify-center items-center">
                     {(() => {

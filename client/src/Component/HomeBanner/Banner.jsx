@@ -20,8 +20,8 @@ const Banner = () => {
                     <div className="title text-center md:text-start">
                         <InnerTitle className="md:text-[48px]" title="Special offerin kids products" />
                     </div>
-                    <div className="text max-w-md text-center md:text-start">
-                        <p className=" font-sans text-[16px] font-semibold text-[#718190] ">Fashion is a form of self-expression and autonomy at a particular period and place.</p>
+                    <div className="text max-w-md mx-auto text-center md:text-start">
+                        <p className=" mx-4 md:mx-0 font-sans text-[16px] font-semibold text-[#718190] ">Fashion is a form of self-expression and autonomy at a particular period and place.</p>
                     </div>
                     <div className="button text-center md:text-start py-4">
                       <div className="button-area">

@@ -11,7 +11,7 @@ const Blogarea = () => {
     const [blog,setBlog] = useState([])
    useEffect(()=>{
             const incomingData = async()=>{
-                const response =await FachingData("http://localhost:3000/blog")
+                const response =await FachingData("https://cisco-sigma.vercel.app//blog")
                 setBlog(response)
         
         }
@@ -20,12 +20,12 @@ const Blogarea = () => {
 
   return (
     <div className=" bg-[#f7f7f9] rounded-xl my-10">
-        <div className="content py-16">
+        <div className="content py-16 ">
             <div className="title">
-                <Title firstTitle="The latest news" secendTitle="From the Ciseco blog"  />
+                <Title firstTitle="The latest news from the Ciseco blog"  />
             </div>
-            <div className="content mx-10 flex justify-between gap-6">
-                <div className="latest w-[50%]">
+            <div className="content mx-10 lg:flex justify-between gap-6">
+                <div className="latest w-full lg:w-[50%]">
                     <div className="image rounded-xl">
                         <img className="rounded-2xl h-[500px] w-full" src="https://i.ibb.co/rsHTgWh/pexels-photo-6168061.jpg" alt="" />
                     </div>
@@ -49,7 +49,7 @@ const Blogarea = () => {
                         </div>
                     </div>
                 </div>
-                <div className="post w-[50%]">
+                <div className="post w-full lg:w-[50%]">
                     {
                         blog.map((item)=>
                            <div key={item?.id} className="main flex gap-4 my-4 justify-between">
