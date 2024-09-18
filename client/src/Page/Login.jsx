@@ -111,7 +111,7 @@ const fromHandeler =(e)=>{
       password:loginPassword,
       retypePassword:reTypepassword
      }
-     fetch("http://localhost:3000/register-user",{
+     fetch("https://cisco-sigma.vercel.app/register-user",{
        method:"POST",
        headers:{
          "Content-Type" : "application/json"
