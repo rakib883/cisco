@@ -11,7 +11,7 @@ const Blogarea = () => {
     const [blog,setBlog] = useState([])
    useEffect(()=>{
             const incomingData = async()=>{
-                const response =await FachingData("https://cisco-sigma.vercel.app//blog")
+                const response =await FachingData("https://cisco-sigma.vercel.app/blog")
                 setBlog(response)
         
         }
