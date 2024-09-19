@@ -111,7 +111,7 @@ app.post('/create-checkout-session', async (req, res) => {
               name:item?.name,
               images:[item?.image]
             },
-            unit_amount:item?.price * 100
+            unit_amount:Math.round(item?.price * 100)
           },
           quantity:item?.quantity
      }))
@@ -121,12 +121,12 @@ app.post('/create-checkout-session', async (req, res) => {
             payment_method_types:["card"],
             line_items:lineItem,
             mode:"payment",
-            success_url:"http://localhost:5173/",
-            cancel_url:"http://localhost:5173/"
+            success_url:"https://cisco-client.vercel.app/pament-successful",
+            cancel_url:"https://cisco-client.vercel.app/pament-cancell"
          })
 
          res.json(session)
-         console.log(session)
+       
       }catch(error){
         console.log(error)
       }
