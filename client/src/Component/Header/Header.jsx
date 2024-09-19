@@ -40,8 +40,8 @@ const Header = () => {
   return (
     <div className="bg-white shadow-xl sticky top-0 z-30"> 
         {/* mobile menu area start */}
-        <div className={` ${ mobileMenu === 1 ?"right-0 duration-300" : "right-[700px] duration-300 no-scrollbar"} md:hidden overflow-auto no-scrollbar   absolute top-0  w-full h-screen bg-red-600 z-50`}>
-            <div className="content w-[60%] bg-white shadow-xl min-h-max">
+        <div className={` ${ mobileMenu === 1 ?"right-0 duration-300" : "right-[700px] duration-300 no-scrollbar"} md:hidden overflow-auto no-scrollbar   absolute top-0  w-full h-screen  z-50`}>
+            <div className="content w-[60%] bg-white shadow-xl min-h-dvh">
                 <div className="content bg-gray-600 py-4 sticky top-0 z-50">
                     <div className="header flex justify-between items-center mx-4">
                         <div className="icon">
