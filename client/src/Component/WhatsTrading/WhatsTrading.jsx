@@ -302,7 +302,7 @@ console.log(filter)
             </div>
             <div className="menu">
               <div className=" grid  md:flex items-center">
-                  <div className="menu justify-center md:justify-start flex  md:gap-4">
+                  <div className="menu justify-center md:justify-start md:flex  md:gap-4">
                     <div onClick={()=>setHover(1)} className="menu-item cursor-pointer">
                        <p className={`${hoverStyle === 1 ? "bg-black text-white" : "text-[#66748b] hover:bg-slate-100  " }  font-semibold px-6 py-2 rounded-full`}>All</p>
                     </div>
