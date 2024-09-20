@@ -43,7 +43,7 @@ const Header = () => {
         <div className={` ${ mobileMenu === 1 ?"right-0 duration-300" : "right-[700px] duration-300 no-scrollbar"} md:hidden overflow-auto no-scrollbar   absolute top-0  w-full h-screen  z-50`}>
             <div className="content w-[60%] bg-white shadow-xl min-h-dvh">
                 <div className="content bg-gray-600 py-4 sticky top-0 z-50">
-                    <div className="header flex justify-between items-center mx-1">
+                    <div className="header flex justify-between items-center mx-4">
                         <div className="icon">
                             <Link style={{borderBottom: 'none' }} className="image h-auto w-[20px]">
                                 <p className=" text-2xl font-semibold">Cisco.com</p>
@@ -79,9 +79,9 @@ const Header = () => {
                         <div className="  flex flex-col  justify-center gap-2">
                             {
                                 menuItem.map((item)=>(
-                                    <div onClick={()=>setMobileShowMenu(2)} key={item?.name} className=" hover:bg-gray-300 p-2 rounded-md">
-                                        <Link className=" font-sans rs-link-no-underline font-semibold text-[16px]" to={item?.path}>{item.name}</Link>
-                                    </div>
+                                    <Link to={item?.path} onClick={()=>setMobileShowMenu(2)} key={item?.name} className=" hover:bg-gray-300 p-2 rounded-md">
+                                        <p className=" font-sans rs-link-no-underline font-semibold text-[16px]" >{item.name}</p>
+                                    </Link>
                                 ))
                             }
                         </div> 
@@ -90,7 +90,7 @@ const Header = () => {
             </div>
         </div>
         {/* mobile menu area end */}
-        <div className="content flex justify-between items-center mx-10">
+        <div className="content flex justify-between items-center mx-2">
             <div className="logo cursor-pointer ">
                 <Link className="image h-[40px] w-auto  hidden md:block">
                     <img className=" w-full h-full" src="https://ciseco-nextjs.vercel.app/_next/static/media/logo.14d0e71d.svg" alt="" />

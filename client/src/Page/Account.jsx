@@ -7,17 +7,32 @@ import PasswordHidden from "../UI/PasswordHidden"
 const Account = () => {
    const [acountInfo,setAccountInfo] = useState(1)
 //   Gender area stata
+console.log(typeof(acountInfo))
 const gender = [
    {name : "Male", id:1},
    {name : "Femel", id:2},
    {name : "Other", id:3},
 ].map((item)=>({label: item?.name, value: item}))
 
-const orderData = new Date()
-console.log(orderData)
+// const prpfile data array
+const profileTab = [
+   {name : "account",id:1},
+   {name : "Save",id:2},
+   {name : "My Order",id:3},
+   {name : "Change password",id:4},
+   {name : "billing info",id:5},
+]
+
+
+const accountItemHandeler =(e)=>{
+    const userData = e.target.value
+    setAccountInfo(Number(userData))
+}
+
+console.log(typeof(acountInfo))
   return (
     <div>
-        <div className="content mx-[150px] mt-[100px]">
+        <div className="content mx-8 lg:mx-[150px] mt-[100px]">
             <div className="item">
                 <div className="title">
                    <div className="item">
@@ -38,33 +53,44 @@ console.log(orderData)
                 <div className=" mt-4">
                     <Border/>
                 </div>
-                <div className="menu-item flex items-center gap-14">
-                      <div onClick={()=>setAccountInfo(1)} className="item  relative">
-                         <div className={`${ acountInfo === 1 ? "custom-border text-black " : "text-[#64748b]" } account cursor-pointer `}>
-                            <p className=" text-[16px] w-full">Account info</p>
-                         </div>
-                      </div>
-                      <div onClick={()=>setAccountInfo(2)}  className="item text-[#64748b]` relative">
-                         <div className={`${ acountInfo === 2 ? "custom-border text-black " : "text-[#64748b]" } account cursor-pointer `}>
-                            <p className=" text-[16px] w-full">Save lists</p>
-                         </div>
-                      </div>
-                      <div  onClick={()=>setAccountInfo(3)} className="item text-[#64748b] relative">
-                         <div className={`${ acountInfo === 3 ? "custom-border text-black " : "text-[#64748b]" } account cursor-pointer `}>
-                            <p className=" text-[16px]">My order</p>
-                         </div>
-                      </div>
-                      <div onClick={()=>setAccountInfo(4)} className="item text-[#64748b] relative">
-                         <div className={`${ acountInfo === 4 ? "custom-border text-black " : "text-[#64748b]" } account cursor-pointer `}>
-                            <p className=" text-[16px]">Change password </p>
-                         </div>
-                      </div>
-                      <div onClick={()=>setAccountInfo(5)} className="item text-[#64748b] relative">
-                         <div  className={`${ acountInfo === 5 ? "custom-border text-black " : "text-[#64748b]" } account cursor-pointer `}>
-                            <p className=" text-[16px]">Change Billing</p>
-                         </div>
-                      </div>
-                </div>
+                  <div className="main">
+                     <div className="menu-item md:flex items-center gap-14 hidden md:block ">
+                           <div onClick={()=>setAccountInfo(1)} className="item  relative">
+                              <div className={`${ acountInfo === 1 ? "custom-border text-black " : "text-[#64748b]" } account cursor-pointer `}>
+                                 <p className=" text-[16px] w-full">Account info</p>
+                              </div>
+                           </div>
+                           <div onClick={()=>setAccountInfo(2)}  className="item text-[#64748b]` relative">
+                              <div className={`${ acountInfo === 2 ? "custom-border text-black " : "text-[#64748b]" } account cursor-pointer `}>
+                                 <p className=" text-[16px] w-full">Save lists</p>
+                              </div>
+                           </div>
+                           <div  onClick={()=>setAccountInfo(3)} className="item text-[#64748b] relative">
+                              <div className={`${ acountInfo === 3 ? "custom-border text-black " : "text-[#64748b]" } account cursor-pointer `}>
+                                 <p className=" text-[16px]">My order</p>
+                              </div>
+                           </div>
+                           <div onClick={()=>setAccountInfo(4)} className="item text-[#64748b] relative">
+                              <div className={`${ acountInfo === 4 ? "custom-border text-black " : "text-[#64748b]" } account cursor-pointer `}>
+                                 <p className=" text-[16px]">Change password </p>
+                              </div>
+                           </div>
+                           <div onClick={()=>setAccountInfo(5)} className="item text-[#64748b] relative">
+                              <div  className={`${ acountInfo === 5 ? "custom-border text-black " : "text-[#64748b]" } account cursor-pointer `}>
+                                 <p className=" text-[16px]">Change Billing</p>
+                              </div>
+                           </div>
+                     </div>
+                     <div className="select md:hidden">
+                        <select onChange={accountItemHandeler} className="w-full outline-none border-none bg-black text-white font-semibold py-2 px-2 cursor-pointer font-sans">
+                               {
+                                 profileTab?.map((item)=>
+                                    <option value={item?.id}  key={item?.name}>{item?.name}</option>
+                                 )
+                               }
+                        </select>
+                     </div>
+                  </div>   
                 <div className="">
                     <Border/>
                 </div>
@@ -76,15 +102,15 @@ console.log(orderData)
                             <div className="title my-8">
                               <InnerTitle title="Accounts Information" />
                             </div>
-                            <div className="main-content flex gap-10">
-                                 <div className="item w-[10%]">
+                            <div className="main-content md:flex gap-10">
+                                 <div className="item w-full md:w-[10%] flex justify-center items-center md:justify-start md:items-start">
                                     <div className="image h-[100px] w-[100px] rounded-full">
                                        <img className="rounded-full h-full w-full" src="https://i.ibb.co.com/2y96N1W/Whats-App-Image-2024-06-22-at-14-32-06-92634224.jpg" alt="" />
                                     </div>
                                  </div>
-                                 <div className="form w-[90%]">
+                                 <div className="form w-full mt-4 md:w-[90%]">
                                     <div className="parent flex gap-2 flex-col">
-                                       <div className="name-area flex gap-4">
+                                       <div className="name-area md:flex gap-4">
                                           <div className="first-name w-full">
                                              <p className="text-[16px] font-semibold my-2">First name</p>
                                              <Input size="lg" type="text" placeholder="Inter first name" />
@@ -94,7 +120,7 @@ console.log(orderData)
                                              <Input size="lg" type="text" placeholder="Inter last name" />
                                           </div>
                                        </div>
-                                       <div className="name-area flex gap-4">
+                                       <div className="name-area md:flex gap-4">
                                           <div className="first-name w-full">
                                              <p className="text-[16px] font-semibold my-2">Email address</p>
                                              <Input size="lg" type="text" placeholder="Email address" />
@@ -110,7 +136,7 @@ console.log(orderData)
                                              <Input size="lg" type="text" placeholder="Your full address" />
                                           </div>
                                        </div>
-                                       <div className="name-area flex  gap-4">
+                                       <div className="name-area md:flex  gap-4">
                                           <div className="first-name w-full">
                                              <p className="text-[16px] font-semibold my-2">Gender</p>
                                              <SelectPicker size="lg" style={{width:"100%"}} searchable={false} data={gender}/>
@@ -157,7 +183,7 @@ console.log(orderData)
                               <div className="title my-4">
                                  <InnerTitle title="Update your password"/>
                               </div>
-                              <div className="item-area flex gap-2">
+                              <div className="item-area md:flex gap-2">
                                  <div className="form w-full flex flex-col gap-3">
                                     <div className="item">
                                        <p className=" text-[16px] font-semibold my-2">Current password</p>

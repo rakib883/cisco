@@ -49,13 +49,16 @@ const Blogarea = () => {
                         </div>
                     </div>
                 </div>
-                <div className="post w-full lg:w-[50%]">
+                <div className="post w-full grid grid-cols-2 md:grid-cols-1 gap-4 lg:w-[50%]">
                     {
                         blog.map((item)=>
-                           <div key={item?.id} className="main flex gap-4 my-4 justify-between">
+                           <div key={item?.id} className="main md:flex gap-1 my-4 justify-between">
+                                  <div className="image w-full md:hidden">
+                                     <img className=" h-[200px] w-full rounded-2xl" src={item?.image} alt="" />
+                                  </div>
                                  <div className="text">
-                                    <h1 className=" text-lg cursor-pointer hover:text-[#707f94] duration-300">{item?.title}</h1>
-                                    <p className=" text-base text-[#707f94] font-sans mt-2">{item?.pragraph}</p>
+                                    <p className=" text-[16px] md:text-lg cursor-pointer font-semibold hover:text-[#707f94] duration-300">{item?.title.substring(0,40)}...</p>
+                                    <p className=" text-[16px] md:text-base text-[#707f94] font-sans mt-2">{item?.pragraph}</p>
                                      <div className="profile flex items-center gap-4 my-4">
                                         <div className="image">
                                             <img className=" h-6 w-6 rounded-full" src={item?.profile} alt="" />
@@ -64,7 +67,7 @@ const Blogarea = () => {
                                         <div className="date font-sans font-medium">20.04.24</div>
                                      </div>
                                  </div>
-                                 <div className="image w-[50%]">
+                                 <div className="image hidden md:block w-[50%]">
                                     <img className="h-[150px] w-[150px] rounded-2xl" src={item?.image} alt="" />
                                  </div>
                            </div>
