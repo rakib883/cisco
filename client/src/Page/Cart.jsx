@@ -58,7 +58,7 @@ const Cart = () => {
                                           </div>
                                           <div className="text-area w-full md:w-[80%] mt-2">
                                              <div className="top-area flex justify-between  w-full">
-                                                <div className="title w-[40%] text-start">
+                                                <div className="title w-[35%] text-start">
                                                     <div className="name">
                                                         <p className=" text-[16px] font-medium">{item?.name}</p>
                                                     </div>
@@ -80,25 +80,25 @@ const Cart = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="increment w-[20%]">
+                                                <div className="increment w-[30%]">
                                                     <div className="increment-decrement">
-                                                    <div>
-                                                        <div className="flex items-center justify-center gap-4 bg-red-600">
-                                                            <div onClick={()=>increment(addToCart({
-                                                                id:item?.id
-                                                            }))} className="plus h-4 w-4  border-[1px]  rounded-full flex justify-center cursor-pointer items-center"><FaPlus /></div>
-                                                            <div className="quantity ">{item?.quantity}</div>
-                                                            <div 
-                                                            onClick={()=>decrement(decrementProduct({
-                                                                id:item?.id
-                                                            }))}
-                                                            className="minus border-[1px] h-4 w-4  rounded-full flex justify-center cursor-pointer items-center"><GoDash /></div>
-                                                        </div>
-                                                    </div> 
+                                                        <div>
+                                                            <div className="flex items-center justify-center gap-4 ">
+                                                                <div onClick={()=>increment(addToCart({
+                                                                    id:item?.id
+                                                                }))} className="plus h-6 w-6  border-[1px]  rounded-full flex justify-center cursor-pointer items-center"><FaPlus /></div>
+                                                                <div className="quantity ">{item?.quantity}</div>
+                                                                <div 
+                                                                onClick={()=>decrement(decrementProduct({
+                                                                    id:item?.id
+                                                                }))}
+                                                                className="minus border-[1px] h-6 w-6  rounded-full flex justify-center cursor-pointer items-center"><GoDash /></div>
+                                                            </div>
+                                                        </div> 
                                                     </div>
                                                 </div>
-                                                <div className="price w-[40%] text-end">
-                                                    <p>${item?.price * item?.quantity }</p>
+                                                <div className="price w-[35%] text-end">
+                                                    <p> <PriceFormat price={item?.price * item?.quantity } /> </p>
                                                 </div>
                                              </div>
                                              <div className=" flex justify-between items-center mt-4 ">
