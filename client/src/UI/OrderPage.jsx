@@ -372,7 +372,7 @@ const orderHandeler =async()=>{
                   </div>
                    <div className="butt w-full">
                       <div onClick={orderHandeler}>
-                          <button type="submit" className=" bg-black w-full text-white px-4 py-3 rounded-3xl">Confarm order now</button>
+                          <button type="submit" className=" bg-black w-full text-white px-4 active:bg-white active:text-black  py-3 rounded-3xl">Confarm order now</button>
                       </div>
                     </div>
                </div>

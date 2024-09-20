@@ -83,18 +83,16 @@ const Cart = () => {
                                                 <div className="increment w-[20%]">
                                                     <div className="increment-decrement">
                                                     <div>
-                                                        <div className="flex items-center gap-4">
-                                                            <div 
-                                                            onClick={()=>increment(addToCart({
+                                                        <div className="flex items-center justify-center gap-4 bg-red-600">
+                                                            <div onClick={()=>increment(addToCart({
                                                                 id:item?.id
-                                                            }))}
-                                                            className="plus border-[1px] h-8 w-8 rounded-full flex justify-center cursor-pointer items-center"><FaPlus /></div>
+                                                            }))} className="plus h-4 w-4  border-[1px]  rounded-full flex justify-center cursor-pointer items-center"><FaPlus /></div>
                                                             <div className="quantity ">{item?.quantity}</div>
                                                             <div 
                                                             onClick={()=>decrement(decrementProduct({
                                                                 id:item?.id
                                                             }))}
-                                                            className="minus border-[1px] h-8 w-8 rounded-full flex justify-center cursor-pointer items-center"><GoDash /></div>
+                                                            className="minus border-[1px] h-4 w-4  rounded-full flex justify-center cursor-pointer items-center"><GoDash /></div>
                                                         </div>
                                                     </div> 
                                                     </div>
@@ -128,7 +126,7 @@ const Cart = () => {
                     </div>
                 </div>
                 <div className="detils w-full  lg:w-[40%] lg:border-l-2 ">
-                    <div className="item px-8 sticky  mt-[50px] lg:mt-0">
+                    <div className="item lg:mx-4 sticky  mt-[50px] lg:mt-0">
                         <div className="title">
                             <p className=" text-[18px] font-semibold">Order Summary</p>
                         </div>
