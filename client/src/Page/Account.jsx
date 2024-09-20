@@ -38,7 +38,7 @@ console.log(typeof(acountInfo))
                    <div className="item">
                       <InnerTitle title="Account" />
                    </div>
-                   <div className="text flex gap-2 text-[18px]">
+                   <div className="text flex gap-2 text-[14px] md:text-[18px]">
                         <div className="item"> 
                             <p className=" font-semibold">Rakin Sheikh</p>
                         </div>
