@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {addToCart} from "../Redux/slice"
 import { GoDash } from 'react-icons/go'
+import PriceFormat from './PriceFormat'
 
 const ProductList = ({item, quantity}) => {
 
@@ -84,7 +85,7 @@ const ProductList = ({item, quantity}) => {
           <p className="mt-[-15px] font-sans font-medium text-[#8b8c92]">{description}</p>
        </div>
        <div className="prize my-4 flex justify-between items-center">
-          <div className="prize border-2 rounded-xl px-4 py-1 border-green-600 font-sans font-semibold inline-block">${item?.price}</div>
+          <div className="prize border-2 rounded-xl px-4 py-1 border-green-600 font-sans font-semibold inline-block"><PriceFormat price={item?.price} /></div>
           <div className="rating flex items-center gap-2">
               <FaStar className="text-[#fbbf24] text-lg " />
               <p className=" flex font-sans gap-2">{rating}</p> 

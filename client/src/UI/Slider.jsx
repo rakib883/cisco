@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, decrementProduct,  } from "../Redux/slice";
 import { FaPlus } from "react-icons/fa";
 import { GoDash } from "react-icons/go";
+import PriceFormat from "./PriceFormat";
 
 
 function Slider({dataLink}) {
@@ -204,7 +205,7 @@ function Slider({dataLink}) {
                          </div>
                          <div className="prize-rating md:my-2 flex justify-between items-center">
                             <div className="price my-4 md:my-0 border-2 rounded-lg border-[#22c55e] inline-block">
-                               <p className=" px-2 font-sans font-semibold">${item?.price}</p>
+                               <p className=" px-2 font-sans font-semibold"><PriceFormat price={item?.price}/></p>
                             </div>
                             <div className="rating my-1 md:my-0 flex items-center gap-2 font-sans">
                               <FaStar className=" text-[#fbbf24]" /> <p>{item?.rating}</p><p className="mt-[-2px]">(98 review)</p>

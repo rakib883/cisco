@@ -8,6 +8,7 @@ import { IoResize } from "react-icons/io5";
 import { addToCart, cartItemRemove, decrementProduct } from "../Redux/slice";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import PriceFormat from "../UI/PriceFormat";
 
 
 const Cart = () => {
@@ -33,7 +34,7 @@ const Cart = () => {
         {
         cartSelector?.length > 0 ?
 
-        <div className="content mx-20 my-8">
+        <div className="content mx-8 lg:mx-20 my-8">
             <div className="title ">
                 <div className="title">
                     <InnerTitle title="Shopping Cart"/>
@@ -42,20 +43,20 @@ const Cart = () => {
                      </p>
                 </div>
             </div>
-            <div className="product flex mt-[50px] gap-8">
-                <div className="product  w-[60%]">
+            <div className="product lg:flex mt-[50px] gap-8">
+                <div className="product w-full  lg:w-[60%]">
                     <div className="product">
                             <div className="product flex flex-col gap-4">
                                 {
                                     cartSelector.map((item)=>
                                     <div key={item?.id} className="item"> 
-                                       <div  className="main flex">
-                                          <div className="image w-[20%]">
+                                       <div  className="main md:flex">
+                                          <div className="image w-full flex justify-center md:w-[20%]">
                                             <div className="image-parent rounded-lg max-h-[100px] max-w-[100px] bg-[#f1f5f9]">
                                                 <img className=" object-contain" src={item?.image} alt="" />
                                             </div>
                                           </div>
-                                          <div className="text-area w-[80%] mt-2">
+                                          <div className="text-area w-full md:w-[80%] mt-2">
                                              <div className="top-area flex justify-between  w-full">
                                                 <div className="title w-[40%] text-start">
                                                     <div className="name">
@@ -126,8 +127,8 @@ const Cart = () => {
                             </div>  
                     </div>
                 </div>
-                <div className="detils  w-[40%] border-l-2 ">
-                    <div className="item px-8 sticky top-[200px]">
+                <div className="detils w-full  lg:w-[40%] lg:border-l-2 ">
+                    <div className="item px-8 sticky  mt-[50px] lg:mt-0">
                         <div className="title">
                             <p className=" text-[18px] font-semibold">Order Summary</p>
                         </div>
@@ -138,7 +139,7 @@ const Cart = () => {
                                         <p className=" text-[14px]">Subtotal</p>
                                     </div>
                                     <div className="value">
-                                        <p className=" text-[14px] text-black font-bold">${CartSubtotal}</p>
+                                        <p className=" text-[14px] text-black font-bold"><PriceFormat price={CartSubtotal}/></p>
                                     </div>
                                 </div>
                            </div>
@@ -168,7 +169,7 @@ const Cart = () => {
                                         <p className=" text-[18px] font-semibold">Order total</p>
                                     </div>
                                     <div className="value">
-                                        <p className=" text-[16px] text-black font-bold ">${CartSubtotal}</p>
+                                        <p className=" text-[16px] text-black font-bold "> <PriceFormat price={CartSubtotal}/> </p>
                                     </div>
                                 </div>
                            </div>

@@ -8,6 +8,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { FaPlus } from "react-icons/fa";
 import { GoDash } from "react-icons/go";
 import {addToCart, cartItemRemove, decrementProduct} from "../Redux/slice"
+import PriceFormat from "./PriceFormat";
 
 
 const OrderPage = () => {
@@ -139,7 +140,7 @@ const orderHandeler =async()=>{
 
   return (
     <div>
-      <div className="content mx-20 my-8">
+      <div className="content mx-8 md:mx-20 my-8">
         {
           reduxData.length > 0 ? 
         <div className="content">
@@ -147,8 +148,8 @@ const orderHandeler =async()=>{
             <InnerTitle title="Checkout now" />
           </div>
 
-          <div className="item flex gap-4">
-            <div className="info w-[60%] flex flex-col gap-4">
+          <div className="item md:flex gap-4">
+            <div className="info w-full lg:w-[60%] flex flex-col gap-4">
               <div className="contact-info">
                 <div className="contact-info border rounded-xl">
                   <div className="item mx-4 py-2 flex items-center">
@@ -161,7 +162,7 @@ const orderHandeler =async()=>{
                           <div className="info">
                             <p className="text-[16px] font-semibold">Contact info</p>
                           </div>
-                          <div className="info flex gap-2 items-center">
+                          <div className="info lg:flex gap-2 items-center">
                             <div className="item">
                               <p>Muksudpur, Gopalgonj</p>
                             </div>
@@ -243,7 +244,7 @@ const orderHandeler =async()=>{
                           <div className="info">
                             <p className="text-[16px] font-semibold">Shiping address</p>
                           </div>
-                          <div className="info flex gap-2 items-center">
+                          <div className="info lg:flex gap-2 items-center">
                             <div className="item">
                               <p>Muksudpur, Gopalgonj</p>
                             </div>
@@ -298,13 +299,13 @@ const orderHandeler =async()=>{
               </div>
             </div>
 
-            <div className="order-info w-[40%]">
+            <div className="order-info w-full mt-4 md:mt-0 lg:w-[40%]">
               <div className="product">
                 <div className="item flex gap-4 flex-col">
                   {
                      reduxData?.map((item)=>
-                      <div key={item?.id} className="item flex items-center gap-4">
-                        <div className="image-area">
+                      <div key={item?.id} className="item md:flex items-center gap-4">
+                        <div className="image-area flex justify-center items-center">
                           <div className="item h-[150px] w-[150px] bg-[#f1f5f9] rounded-xl ">
                             <img className=" object-cover" src={item?.image} alt="" />
                           </div>
@@ -354,7 +355,7 @@ const orderHandeler =async()=>{
                   <div className="shiping my-4 flex flex-col gap-3">
                     <div className="subtotal flex justify-between">
                        <div className="title"><p className=" text-base  text-[#6a96c0]">Subtotal</p></div>
-                       <div className="price"><p className=" text-[14px] font-semibold">${total}</p></div>
+                       <div className="price"><p className=" text-[14px] font-semibold"> <PriceFormat price={total} /> </p></div>
                     </div>
                     <div className="subtotal flex justify-between">
                        <div className="title"><p className=" text-base  text-[#6a96c0]">Shipping estimate</p></div>
@@ -366,7 +367,7 @@ const orderHandeler =async()=>{
                     </div>
                     <div className="subtotal flex justify-between">
                        <div className="title"><p className=" text-base  text-[black]">Order total</p></div>
-                       <div className="price"><p className=" text-[14px] font-semibold">${total}</p></div>
+                       <div className="price"><p className=" text-[14px] font-semibold"> <PriceFormat price={total} /> </p></div>
                     </div>
                   </div>
                    <div className="butt w-full">
