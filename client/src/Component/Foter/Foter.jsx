@@ -9,7 +9,7 @@ const Foter = () => {
   return (
     <div className="mt-30">
         <div className="w-full h-[1px] bg-gray-300 my-10"> </div>
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 mx-8 gap-4">
+        <div className="grid xs:grid-cols-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-5 mx-8 gap-4">
            <div className="icon">
               <div className="image ">
                  <img className="h-[40px] " src="https://ciseco-nextjs.vercel.app/_next/static/media/logo.14d0e71d.svg" alt="" />

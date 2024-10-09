@@ -33,8 +33,8 @@ const Explore = () => {
                  <InnerTitle title="Start exploring." className="text-[36px]"/> 
              </div>
              <div className="button-area">
-                <div className="conten bg-white drop-shadow-xl max-w-3xl mx-auto rounded-full">
-                   <div className="content flex justify-between">
+                <div className="conten bg-white drop-shadow-xl max-w-3xl mx-auto md:rounded-full">
+                   <div className="content flex xs:flex-col justify-between">
                         <div  onClick={()=>setExplor(1)} className={` ${explor === 1 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 px-2 md:px-6 `}>
                             < RiWomenLine className=" text-xl mt-[2px]" />
                             <p className=" font-sans font-semibold">Women</p> 

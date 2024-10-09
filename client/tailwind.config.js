@@ -11,6 +11,13 @@ export default {
         "bannerImage" : "url('/Banner.png')"
       }
     },
+    screens: {
+      // => extra small device
+      'xs':'200px',
+      'sm':'400px',
+       'md':"768px",
+       'lg':"992px"
+    },
   },
   plugins: [
     function ({ addUtilities }) {

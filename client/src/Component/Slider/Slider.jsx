@@ -55,8 +55,8 @@ export default function Slider() {
                         <p className=" text-[16px] md:text-[30px] lg:text-[50px] text-center  font-sans font-semibold md:text-right">{item?.title}</p>
                         <div className="button flex justify-center  md:justify-end my-4">
                             <button className="bg-black rounded-full text-white md:px-4 lg:px-8 px-2 py-1 md:py-2 lg:py-4 flex gap-2 items-center">
-                              <p className="md:text-lg text-base font-sans">Explor now</p>
-                              <CiSearch className="mt-[4px] text-2xl" />
+                              <p className="md:text-lg xs:text-[10px] text-base font-sans">Explor now</p>
+                              <CiSearch className="mt-[4px] xs:text-base sm:text-md md:text-2xl" />
                             </button>
                         </div>
                       </motion.div>

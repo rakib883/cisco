@@ -131,7 +131,7 @@ const fromHandeler =(e)=>{
     <div>
       {
         <div className="content bg-[#f7f2f9]">
-            <div className="main-area  max-w-2xl h-screen mx-auto">
+            <div className="main-area  max-w-md h-screen mx-auto">
                 <div className="item flex  h-screen justify-center items-center">
                     <div className="content bg-[#ffffff]  w-full p-8">
                       {
