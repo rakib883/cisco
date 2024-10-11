@@ -55,7 +55,7 @@ function Slider({dataLink}) {
   const cartDataItem = useSelector((item)=>item?.myStore?.CartData) 
   return (
     <div className="main ">
-      <div className="mx-10 relative">
+      <div className=" xs:mx-2 md:mx-10 relative">
         <Swiper
           autoplay={{ delay: 5000 }}
           loop={true}
@@ -68,7 +68,7 @@ function Slider({dataLink}) {
           }}
           breakpoints={{
             320: {
-              slidesPerView: 1, // 1 slide for mobile screens
+              slidesPerView: 2, // 1 slide for mobile screens
               spaceBetween: 10,
             },
             640: {
@@ -178,34 +178,34 @@ function Slider({dataLink}) {
                         </div>
                     </div>
                     <div className="text-area">
-                      <div className="color-area my-4 flex  gap-4 ">
-                        <div onClick={()=>setBorder({id:item?.id,number:1,color:"pink"})} className={` ${border.id === item?.id && border.number === 1 && " border border-pink-700 "}  flex justify-center items-center h-5  w-5 rounded-full `}>
-                             <div className="inner bg-pink-700 h-4 w-4 rounded-full"></div>
+                      <div className="color-area xs:my-2 my-4 flex xs:gap-2  gap-4 ">
+                        <div onClick={()=>setBorder({id:item?.id,number:1,color:"pink"})} className={` ${border.id === item?.id && border.number === 1 && " border border-pink-700 "}  flex justify-center items-center  xs:h-3 xs:w-3  md:h-5  md:w-5 rounded-full `}>
+                             <div className="inner bg-pink-700 xs:h-2 xs:w-2 md:h-4 md:w-4 rounded-full"></div>
                         </div>
-                        <div onClick={()=>setBorder({id:item?.id,number:2,color:"Yellow"})} className={` ${border.id === item?.id && border.number === 2  && " border border-[#facc15] "}  flex justify-center items-center h-5  w-5 rounded-full `}>
-                             <div className="inner bg-[#facc15] h-4 w-4 rounded-full"></div>
+                        <div onClick={()=>setBorder({id:item?.id,number:2,color:"Yellow"})} className={` ${border.id === item?.id && border.number === 2  && " border border-[#facc15] "}  flex justify-center items-center xs:h-3 xs:w-3  md:h-5  md:w-5 rounded-full `}>
+                             <div className="inner bg-[#facc15] xs:h-2 xs:w-2 md:h-4 md:w-4 rounded-full"></div>
                         </div>
-                        <div onClick={()=>setBorder({id:item?.id,number:3,color:"Sky"})} className={` ${border.id === item?.id && border.number === 3 && " border border-[#fb923c] "}  flex justify-center items-center h-5  w-5 rounded-full `}>
-                             <div className="inner bg-[#fb923c] h-4 w-4 rounded-full"></div>
+                        <div onClick={()=>setBorder({id:item?.id,number:3,color:"Sky"})} className={` ${border.id === item?.id && border.number === 3 && " border border-[#fb923c] "}  flex justify-center items-center    xs:h-3 xs:w-3 md:h-5  md:w-5 rounded-full `}>
+                             <div className="inner bg-[#fb923c] xs:h-2 xs:w-2 md:h-4 md:w-4 rounded-full"></div>
                         </div>
-                        <div onClick={()=>setBorder({id:item?.id,number:4,color:"SkyBlue"})} className={` ${border.id === item?.id && border.number === 4  && " border border-[#38bdf8] "}  flex justify-center items-center h-5  w-5 rounded-full `}>
-                             <div className="inner bg-[#38bdf8] h-4 w-4 rounded-full"></div>
+                        <div onClick={()=>setBorder({id:item?.id,number:4,color:"SkyBlue"})} className={` ${border.id === item?.id && border.number === 4  && " border border-[#38bdf8] "}  flex justify-center items-center  xs:h-3 xs:w-3 md:h-5  md:w-5 rounded-full `}>
+                             <div className="inner bg-[#38bdf8] xs:h-2 xs:w-2 md:h-4 md:w-4 rounded-full"></div>
                         </div>
-                        <div onClick={()=>setBorder({id:item?.id,number:5,color:"green"})} className={` ${ border.id === item?.id && border.number === 5  && " border border-[#4ade80] "}  flex justify-center items-center h-5  w-5 rounded-full `}>
-                             <div className="inner bg-[#4ade80] h-4 w-4 rounded-full"></div>
+                        <div onClick={()=>setBorder({id:item?.id,number:5,color:"green"})} className={` ${ border.id === item?.id && border.number === 5  && " border border-[#4ade80] "}  flex justify-center items-center xs:h-3 xs:w-3 md:h-5  md:w-5 rounded-full `}>
+                             <div className="inner bg-[#4ade80] xs:h-2 xs:w-2 md:md:h-4 md:md:w-4 rounded-full"></div>
                         </div>
                       </div>
                       {/* title area start */}
                       <div className="text-area">
                          <div className="text">
-                           <p className=" font-sans font-bold text-xl">{item?.name}</p>
+                           <p className=" font-sans font-bold text-xl xs:text-base">{item?.name}</p>
                          </div>
                          <div className="catagory">
                            <p className="font-sans font-medium">Catagory :{item?.category}</p>
                          </div>
-                         <div className="prize-rating md:my-2 flex justify-between items-center">
+                         <div className="prize-rating md:my-2 md:flex md:justify-between items-center">
                             <div className="price my-4 md:my-0 border-2 rounded-lg border-[#22c55e] inline-block">
-                               <p className=" px-2 font-sans font-semibold"><PriceFormat price={item?.price}/></p>
+                               <p className=" px-2 font-semibold"><PriceFormat className="xs:text-[10px] md:text-base" price={item?.price}/></p>
                             </div>
                             <div className="rating my-1 md:my-0 flex items-center gap-2 font-sans">
                               <FaStar className=" text-[#fbbf24]" /> <p>{item?.rating}</p><p className="mt-[-2px]">(98 review)</p>

@@ -32,7 +32,7 @@ function DiscoverSlider() {
     ]
   return (
     <div className="main">
-      <div className="mx-10">
+      <div className=" xs:mx-2 md:mx-10">
         <Swiper
           autoplay={{ delay: 5000 }}
           loop={true}
@@ -60,7 +60,7 @@ function DiscoverSlider() {
                sliderProduct.map((item)=>
                 <SwiperSlide key={item?.image}>
                   <div style={{ background: item.bg }} className=" rounded-md">
-                      <div className="content mx-8 flex  justify-between">
+                      <div className="content xs:mx-2 mx-8 flex  justify-between">
                         <div className="text flex flex-col justify-between">
                            <div className="text my-4">
                                 <p className=" text-base text-[#60738d] font-sans first-letter:uppercase">{item?.name}</p>

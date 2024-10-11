@@ -28,13 +28,13 @@ const Explore = () => {
     
   return (
     <div className="bg-[#f7f7f9] my-10 rounded-3xl">
-        <div className="content mx-10 py-10">
-             <div className="title py-10 text-center">
-                 <InnerTitle title="Start exploring." className="text-[36px]"/> 
+        <div className="xs:mx-2 mx-10 py-10">
+             <div className="title xs:my-2 md:py-10 text-center">
+                 <InnerTitle title="Start exploring." className="md:text-[36px] text-[18px] "/> 
              </div>
              <div className="button-area">
-                <div className="conten bg-white drop-shadow-xl max-w-3xl mx-auto md:rounded-full">
-                   <div className="content flex xs:flex-col justify-between">
+                <div className="  sm:bg-white rounded-full">
+                   <div className="grid grid-flow-row auto-rows-max sm:w-full sm:flex sm:justify-between ">
                         <div  onClick={()=>setExplor(1)} className={` ${explor === 1 && "bg-black text-white" } text-xs md:text-base  womon cursor-pointer inline-flex items-center gap-1 md:gap-2 text-black   rounded-full md:py-3 py-1 px-2 md:px-6 `}>
                             < RiWomenLine className=" text-xl mt-[2px]" />
                             <p className=" font-sans font-semibold">Women</p> 
