@@ -169,15 +169,15 @@ const fromHandeler =(e)=>{
                                     <div className="   w-[300px] text-center font-semibold "><p>Or Login With</p></div>
                                     <div className=" bg-gray h-1 w-full bg-red-700 "></div>
                                  </div>
-                                 <div className="button-area flex gap-4 justify-center items-center">
-                                        <div onClick={()=>{
+                                 <div className="xs:flex xs:flex-col xs:gap-4 md:flex-row">
+                                        <div  onClick={()=>{
                                             facebookHandeler(); 
-                                            }} className="faceboo">
-                                            <IconButton style={{width:"200px",padding:"10px"}}  appearance="primary" icon={<FaFacebookF className="text-white" />} />
+                                            }} className="faceboo w-full ">
+                                            <IconButton style={{width:"100%",padding:"10px"}}  appearance="primary" icon={<FaFacebookF className="text-white" />} />
                                
                                         </div>
-                                        <div onClick={handleGoogleLogin} className="google"> 
-                                            <IconButton style={{width:"200px",padding:"10px"}}  appearance="primary" icon={<FaGoogle  className="text-white"/>} />
+                                        <div onClick={handleGoogleLogin} className="google w-full "> 
+                                            <IconButton style={{width:"100%",padding:"10px"}}  appearance="primary" icon={<FaGoogle  className="text-white"/>} />
                                         </div>
                                  </div>
                              </div>

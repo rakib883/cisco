@@ -167,7 +167,7 @@ const productSize = [
 const cartDataItem = useSelector((item)=>item?.myStore?.CartData)
   return (
     <div>
-        <div className="content mx-10">
+        <div className="content xs:mx-2 md:mx-10">
            <div className="title my-8">
               <InnerTitle className="" title="Women collection" />
               <p className=" max-w-lg text-[#8495b8] font-sans text-[16px]">
@@ -179,7 +179,7 @@ const cartDataItem = useSelector((item)=>item?.myStore?.CartData)
            </div>
            <div className="product-area flex  gap-4">
             {/* sidebar area start */}
-             <div className="sidebar w-[25%] ">
+             <div className="sidebar w-[25%] xs:hidden md:block ">
                  <div className="content">
                     {/* catagory area start */}
                       <div className="catagory">
@@ -270,8 +270,8 @@ const cartDataItem = useSelector((item)=>item?.myStore?.CartData)
                       </div>
 
              </div>
-              <div className="product w-[75%] ">
-                <div className="product-content grid grid-cols-3 gap-3">
+              <div className="product w-full md:w-[75%] ">
+                <div className="product-content grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
                      {
                         product.map((item)=>{
                            const quantity = cartDataItem.find((cartData)=>cartData?.id === item?.id)
