@@ -2,7 +2,7 @@ import { BsMinecartLoaded } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { CiSearch } from "react-icons/ci";
 import { HiMiniXMark } from "react-icons/hi2";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Profile from "../../UI/Profile";
@@ -35,21 +35,39 @@ const Header = () => {
     const [userProfile,setUserProfile] = useState(false)
 
     // mobile menu area start
-    const [mobileMenu,setMobileShowMenu] = useState()
+    const [mobileMenu,setMobileShowMenu] = useState(false)
 
+    // mobile nav handeler
+    const mobileNav = useRef(null)
+
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+          if (mobileNav.current && !mobileNav.current.contains(e.target)) {
+            setMobileShowMenu(false); // Pass false to hide the menu
+          }
+        };
+      
+        document.addEventListener("mousedown", handleClickOutside);
+      
+        return () => {
+          document.removeEventListener("mousedown", handleClickOutside);
+        };
+      }, [mobileNav]);
+
+      console.log(mobileMenu)
   return (
     <div className="bg-white shadow-xl sticky top-0 z-30"> 
         {/* mobile menu area start */}
-        <div className={` ${ mobileMenu === 1 ?"right-0 duration-300" : "right-[700px] duration-300 no-scrollbar"} md:hidden overflow-auto no-scrollbar   absolute top-0  w-full h-screen  z-50`}>
-            <div className="content w-[60%] bg-white shadow-xl min-h-dvh">
-                <div className="content bg-gray-600 py-4 sticky top-0 z-50">
+        <div   className={` ${ mobileMenu === true ?"right-0 duration-300" : "right-[700px] duration-300 no-scrollbar"} md:hidden overflow-auto no-scrollbar   absolute top-0  w-full h-screen  z-50`}>
+            <div ref={mobileNav} className="content w-[60%]   shadow-xl min-h-dvh bg-white">
+                <div className="content bg-gray-600 py-4 sticky top-0 z-50 ">
                     <div className="header flex justify-between items-center mx-4">
                         <div className="icon">
                             <Link style={{borderBottom: 'none' }} className="image h-auto w-[20px]">
                                 <p className=" text-2xl font-semibold">Cisco.com</p>
                             </Link>
                         </div>
-                        <div onClick={()=>setMobileShowMenu(2)} className="cross">
+                        <div onClick={()=>setMobileShowMenu(false)} className="cross">
                            <Button color="red" appearance="primary">
                               <RxCross2 className="text-2xl" />
                            </Button>
@@ -90,12 +108,12 @@ const Header = () => {
             </div>
         </div>
         {/* mobile menu area end */}
-        <div className="content flex justify-between items-center mx-2">
+        <div className="content flex justify-between items-center mx-2 md:mx-10">
             <div className="logo cursor-pointer ">
                 <Link className="image h-[40px] w-auto  hidden md:block">
                     <img className=" w-full h-full" src="https://ciseco-nextjs.vercel.app/_next/static/media/logo.14d0e71d.svg" alt="" />
                 </Link>
-                <div onClick={()=>setMobileShowMenu(1)} className="bars z-10 md:hidden">
+                <div onClick={()=>setMobileShowMenu(true)} className="bars z-10 md:hidden">
                   <Button>
                       <HiMiniBars3CenterLeft className=" text-2xl " />
                   </Button>
