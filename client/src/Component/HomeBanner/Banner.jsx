@@ -3,7 +3,7 @@ import InnerTitle from "../../UI/InnerTitle"
 const Banner = () => {
   return (
     <div>
-        <div className="content mx-10 bg-[#fefce8] rounded-3xl   my-[100px] md:flex md:gap-8 justify-between">
+        <div className="content xs:mx-2 mx-10 bg-[#fefce8] rounded-3xl   my-[100px] md:flex md:gap-8 justify-between">
           <div className="item w-full md:w-[50%]  ">
                 <div className="image w-full ">
                     <div className="image">

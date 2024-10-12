@@ -89,9 +89,6 @@ function Slider({dataLink}) {
              arravalData.map((item)=>{
                
               const existingCardData = cartDataItem.find((data)=>data?.id ===item?.id) 
-              
-
-               
              return(
               <SwiperSlide key={item?.id} >
                  <div className="content  cursor-pointer">

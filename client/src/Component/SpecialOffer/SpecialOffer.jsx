@@ -2,10 +2,10 @@ import { FaArrowRight } from "react-icons/fa6";
 const SpecialOffer = () => {
   return (
     <div>
-        <div className="content mx-10 mt-[50px] bg-[#f8fafc] md:flex md:justify-between rounded-3xl">
-           <div className="title w-full md:w-[50%]">
+        <div className="content xs:mx-2 md:mx-2 lg:mx-10 mt-[50px] bg-[#f8fafc] lg:flex md:justify-between rounded-3xl">
+           <div className="title w-full lg:w-[50%]">
               <div className="content m-2 md:m-20 flex flex-col gap-8">
-                    <p className=" font-sans font-bold py-4 text-[20px] lg:text-[46px]">
+                    <p className=" font-sans font-bold py-4 lg:py-1 text-[20px] lg:text-[46px]">
                         Don t miss out on special offers
                     </p>
                     <p className=" text-[16px] font-sans text-[#717682]">
@@ -35,9 +35,9 @@ const SpecialOffer = () => {
                     </div>
               </div>
            </div>
-           <div className="image w-full md:w-[50%]">
-              <div className="image h-[550px] flex justify-end">
-                 <img className=" h-full" src="https://i.ibb.co/w6ZGwR1/promo3.png" alt="" />
+           <div className="image w-full lg:w-[50%]">
+              <div className="xs:h-[300px] md:h-[400px] lg:h-[550px]  flex justify-end">
+                 <img className=" object-contain w-full h-full" src="https://i.ibb.co/w6ZGwR1/promo3.png" alt="" />
               </div>
            </div>
         </div>

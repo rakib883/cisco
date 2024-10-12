@@ -204,6 +204,10 @@ console.log(filter)
                             <div className="inner-area  bg-white z-50  mt-6  w-[300px]">
                               <div className="content mx-6">
                                    <div className="content py-6">
+                                   <h1 onClick={()=>{setCatagoryData({link:"trending-product",id:8}),filterHandeler}} className=" flex gap-4 items-center">
+                                      <input onChange={(e)=>e.target.value} checked={catagoryData.id === 8} className="customBorder" type="checkbox" /> 
+                                      <p className="text-[16px]  font-sans text-[#4b515f]">All Color</p>
+                                  </h1>
                                     <div className="item">
                                           <h1 onClick={()=>setColor("White")} className=" flex gap-4 items-center h-[35px] cursor-pointer">
                                               <input onChange={(e)=>setColor(e.target.value)} value="White" checked={color === "White"} className="customBorder cursor-pointer" type="checkbox" /> 
@@ -245,6 +249,10 @@ console.log(filter)
                          <div className="inner-area  overflow-hidden mx-2  mt-6 rounded-xl w-[300px]">
                               <div className="content mx-6">
                                   <div className="content py-6">
+                                    <h1 onClick={()=>{setCatagoryData({link:"trending-product",id:8}),filterHandeler}} className=" flex gap-4 items-center">
+                                        <input onChange={(e)=>e.target.value} checked={catagoryData.id === 8} className="customBorder" type="checkbox" /> 
+                                        <p className="text-[16px]  font-sans text-[#4b515f]">All Size</p>
+                                    </h1>
                                     <div className="item">
                                           <h1 onClick={()=>setSize("XXS")} className=" flex gap-4 items-center h-[35px] cursor-pointer">
                                               <input onChange={(e)=>e.target.value} value="XXS" checked={size === "XXS"} className="customBorder cursor-pointer" type="checkbox" /> 
@@ -293,16 +301,16 @@ console.log(filter)
         {/* mobile area end */}
 
 
-        <div className="content mx-10 mt-[50px]">
+        <div className="content xs:mx-2 lg:mx-10 mt-[50px]">
             <div className="title">
                <div className="top my-8">
                  <InnerTitle title="What's trending now" className=""/>
-                  <h1 className="text-[18px] font-sans text-[#718094]">Discover the most trending products in Ciseco.</h1>
+                  <p className="text-[18px] font-sans text-[#718094]">Discover the most trending products in Ciseco.</p>
                </div>
             </div>
             <div className="menu">
               <div className=" grid  md:flex items-center">
-                  <div className="menu justify-center md:justify-start md:flex  md:gap-4">
+                  <div className="   justify-center md:justify-start md:flex  md:gap-4">
                     <div onClick={()=>setHover(1)} className="menu-item cursor-pointer">
                        <p className={`${hoverStyle === 1 ? "bg-black text-white" : "text-[#66748b] hover:bg-slate-100  " }  font-semibold px-6 py-2 rounded-full`}>All</p>
                     </div>
@@ -563,11 +571,13 @@ console.log(filter)
                       }
                     </div>
                     {/* size area end */}
-                    <button  className={`${removeItem === 2 ? " hidden" : " block" } flex items-center font-sans gap-2 border border-[#79ccf2] rounded-full bg-sky-200 px-4 py-2`}>
-                       <LiaUniversalAccessSolid  className=" text-lg" /> <p>On sale</p> <HiMiniXMark onClick={()=>setRemoveItem(2)} className=" text-lg text-white bg-[#79ccf2] rounded-full" />
-                    </button>
+                    <div className="md:hidden lg:block">
+                      <button  className={`${removeItem === 2 ? " hidden" : " block" } flex items-center font-sans gap-2 border border-[#79ccf2] rounded-full bg-sky-200 px-4 py-2 `}>
+                        <LiaUniversalAccessSolid  className=" text-lg" /> <p>On sale</p> <HiMiniXMark onClick={()=>setRemoveItem(2)} className=" text-lg text-white bg-[#79ccf2] rounded-full" />
+                      </button>
+                    </div>  
                  </div> 
-                  <div className="">
+                  <div className="md:hidden lg:block">
                       <button className=" flex items-center font-sans gap-4 border border-[#79ccf2] rounded-full bg-sky-200 px-4 py-2">
                         <HiOutlineCurrencyDollar className=" text-lg" /> <p>Most Popular</p> <HiMiniXMark  className=" text-lg text-white bg-[#79ccf2] rounded-full" />
                       </button>
@@ -582,7 +592,7 @@ console.log(filter)
 
             {/* product area strat */}
             <div className="main">
-              {
+            {
                 hoverStyle === 1 &&
                 <div className="maon my-6  grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {

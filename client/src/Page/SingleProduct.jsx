@@ -55,9 +55,9 @@ const SingleProduct = () => {
 
   return (
     <div>
-       <div className="content mx-10">
-          <div className="item flex justify-between my-8 gap-4">
-             <div className="image w-[50%]">
+       <div className="content xs:mx-2 md:mx-10">
+          <div className="item flex xs:flex-col md:flex-row md:justify-between my-8 gap-4">
+             <div className="image w-full md:w-[50%]">
                  <div className="image bg-[#f1f3f4]">
                    <img className=" h-full w-full" src={product?.images[0]} alt="product" />
                  </div>
@@ -70,8 +70,8 @@ const SingleProduct = () => {
                     </div>
                  </div>
              </div>
-             <div className="items w-[50%]">
-                <h1 className=" text-[30px] font-sans font-semibold">{product?.name}</h1>
+             <div className="items  w-full md:w-[50%]">
+                <p className=" xs:text-base my-2 text-[30px]  font-semibold">{product?.name}</p>
                 <div className="price flex items-center gap-4 ">
                     <div className="price">
                        <p className=" font-sans text-[16px] font-medium border-2 border-green-700 inline-flex rounded-lg px-1 py-[2px] text-green-700">${product?.price}</p>
@@ -122,15 +122,15 @@ const SingleProduct = () => {
 
                     {/* increment decrement area start */}
                     <div className="add-tocart-area w-full">
-                       <div className=" flex justify-between items-center gap-4 my-4 ">
-                         <Button style={{display:"flex", justifyContent:"space-between",paddingLeft:"20px",paddingRight:"20px"}} className=" w-[30%]">
+                       <div className="xs:flex  md:flex md:justify-between items-center gap-4 my-4 ">
+                         <Button style={{display:"flex", justifyContent:"space-between",paddingLeft:"20px",paddingRight:"20px"}} className=" xs:w-full md:w-[30%]">
                             <div className="increment py-2 border rounded-full w-6 h-6 flex justify-center items-center bg-white "><FaPlus className=" rounded-full " /></div>
                             <div className="quentity py-2">
                                  <p className=" font-semibold text-[16px]">5</p>
                               </div>
                             <div className="increment py-2 border rounded-full w-6 h-6 flex justify-center items-center bg-white "><GoDash className=" rounded-full " /></div>
                          </Button>
-                         <div className="decrement w-[70%]">
+                         <div className="decrement xs:w-full md:w-[70%]">
                            <Button style={{width:"100%"}} className="">
                              <div className="cart text-black  py-2 flex justify-center items-center gap-2"> <IoBagHandle  className="text-[18px] "/> <p className=" font-sans font-semibold text-[16px]">Add to cart</p></div>
                            </Button>
@@ -198,11 +198,11 @@ const SingleProduct = () => {
           <div className="product-detils">
              <div className="content">
                   <InnerTitle title="Product Details" className="text-[24px]" />
-                  <p className=" font-sans font-base text-[16px]">
+                  <p className="  xs:text-[12px] md:text-[16px]">
                     The patented eighteen-inch hardwood Arrowhead deck --- finely mortised in, makes this the strongest and most rigid canoe ever built. You cannot buy a canoe that will afford greater satisfaction.
                     The St. Louis Meramec Canoe Company was founded by Alfred Wickett in 1922. Wickett had previously worked for the Old Town Canoe Co from 1900 to 1914. Manufacturing of the classic wooden canoes in Valley Park, Missouri ceased in 1978.
                   </p>
-                  <ul className="my-4 text-[16px] mx-4">
+                  <ul className="my-4 text-[16px] mx-4 font-base xs:text-[12px] md:text-[16px]">
                     <li className=" list-disc">Regular fit, mid-weight t-shirt</li>
                     <li className=" list-disc">Natural color, 100% premium combed organic cotton</li>
                     <li className=" list-disc">Quality cotton grown without the use of herbicides or pesticides - GOTS certified</li>
@@ -215,8 +215,8 @@ const SingleProduct = () => {
           </div>
           <div className="review">
              <div className="content">
-                 <p className=" font-sans text-[24px] font-semibold"> Customer Review</p>
-                 <div className="review grid grid-cols-2 gap-16 mt-8">
+                 <p className=" font-sans xs:text-[16px] md:text-[24px] font-semibold"> Customer Review</p>
+                 <div className="review grid grid-cols-1 xs:gap-2 md:gap-16 mt-8">
                     {
                       reviewData.map((item)=>
                        <div key={item?.id} className="content  w-full">
@@ -226,10 +226,9 @@ const SingleProduct = () => {
                                    <img className=" w-12 h-12 rounded-full" src={item?.image} alt="" />
                                  </div>
                                  <div className="name leading-[5px]">
-                                    <p className=" font-semibold font-sans text-lg">{item?.name}</p>
+                                    <p className=" font-semibold xs:text-[12px]">{item?.name}</p>
                                     <p className=" font-sans">12.12.23</p>
                                  </div>
-                                 <p>  review data {item?.review}</p>
                              </div>
                              <div className="start">
                               <div className="content">

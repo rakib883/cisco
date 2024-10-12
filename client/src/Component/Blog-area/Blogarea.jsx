@@ -24,10 +24,10 @@ const Blogarea = () => {
             <div className="title">
                 <Title firstTitle="The latest news from the Ciseco blog"  />
             </div>
-            <div className="content xs:mx-4 mx-10 md:flex lg:flex justify-between gap-6">
+            <div className="content xs:mx-2 lg:mx-10   lg:flex justify-between gap-6">
                 <div className="latest w-full lg:w-[50%]">
                     <div className="image rounded-xl">
-                        <img className="rounded-2xl xs:h-[200px] sm:h-[350px] lg:h-[500px] w-full" src="https://i.ibb.co/rsHTgWh/pexels-photo-6168061.jpg" alt="" />
+                        <img className="rounded-2xl xs:h-[200px] sm:h-[350px] md:h-[450px]  lg:h-[500px] w-full" src="https://i.ibb.co/rsHTgWh/pexels-photo-6168061.jpg" alt="" />
                     </div>
                     <div className="content">
                         <div className="title hover:text-[#707f94] duration-300 cursor-pointer">
