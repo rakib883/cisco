@@ -54,7 +54,7 @@ app.get("/product", (req, res) => {
 
 app.get("/pending-order",async(req, res) => {
   try{
-    const pendingOrder = await orderModel.find({status:"pending"})
+    const pendingOrder = await orderModel.find({status:"pending"}).limit(20);
     res.send(pendingOrder);
   }catch(error){
      console.log(error)
