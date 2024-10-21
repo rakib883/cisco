@@ -14,14 +14,24 @@ import { TbWorld } from "react-icons/tb";
 import { RiRefund2Fill } from "react-icons/ri";
 import InnerTitle from "../UI/InnerTitle";
 import SpecialOffer from "../Component/SpecialOffer/SpecialOffer";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorite, addToCart, decrementProduct } from "../Redux/slice";
+import { FaRegStar } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { FaHeart } from "react-icons/fa";
 
 
 const SingleProduct = () => {
+   // dispatch area start
+   const dispatch = useDispatch()
+
+   // redux data area start
+   const {whilist,CartData} = useSelector((state)=>state?.myStore)
+
+
+ // data faching area start
   const productId = useParams()
   const {id} = productId
-
-
-  // data faching area start
   const [product,setProduct] = useState(null)
    useEffect(()=>{
      const incomingData = async()=>{
@@ -32,11 +42,32 @@ const SingleProduct = () => {
    },[id])
 
 
+   
+   // redux data cart data compare area start
+   const [isCartData,setCartData] = useState()
+   useEffect(()=>{
+      const cartDataItem = CartData.find((item)=>item?.id === id)
+      setCartData(cartDataItem) 
+   },[CartData])
+
+
+//   favorite data and cart data compare
+const [favoriteData,setFavoriteData] = useState("")
+useEffect(()=>{
+    const favorite = whilist?.find((item)=>item?.id === id)
+    setFavoriteData(favorite)
+},[whilist])
+
+
+
+
+
   // color changer area
   const [currentColor,setCurrentColor] = useState("white")
-
   // size area start
   const [currentSize,setSize] = useState("M")
+
+
 
   // review data faching area start
   const [reviewData,setReview] = useState([])
@@ -47,9 +78,6 @@ const SingleProduct = () => {
     }
     incomingData()
   },[])
-
-
-
 
 
 
@@ -107,7 +135,6 @@ const SingleProduct = () => {
                        <div className="item flex gap-4">
                          {
                           product?.sizes?.map((item)=>{
-                            console.log(item)
                             return(
                               <div key={item} className="main my-2">
                                     <div onClick={()=>setSize(item)} className={`${ item === currentSize ? "bg-[#0284c7] text-white" : ""} w-12 h-8 p-4 border  inline-flex justify-center items-center cursor-pointer  leading-[12px] rounded-xl`}>
@@ -123,17 +150,56 @@ const SingleProduct = () => {
                     {/* increment decrement area start */}
                     <div className="add-tocart-area w-full">
                        <div className="xs:flex  md:flex md:justify-between items-center gap-4 my-4 ">
-                         <Button style={{display:"flex", justifyContent:"space-between",paddingLeft:"20px",paddingRight:"20px"}} className=" xs:w-full md:w-[30%]">
-                            <div className="increment py-2 border rounded-full w-6 h-6 flex justify-center items-center bg-white "><FaPlus className=" rounded-full " /></div>
+                         <Button disabled={ isCartData ? false : true} style={{display:"flex", justifyContent:"space-between",paddingLeft:"20px",paddingRight:"20px"}} className=" xs:w-full md:w-[30%]">
+                            <div 
+                             onClick={()=>dispatch(addToCart({
+                              id:isCartData?.id
+                             }))}
+                            className="increment py-2 border rounded-full w-6 h-6 flex justify-center items-center bg-white "><FaPlus className=" rounded-full " /></div>
                             <div className="quentity py-2">
-                                 <p className=" font-semibold text-[16px]">5</p>
+                                 <p className=" font-semibold text-[16px]">{isCartData?.quantity}</p>
                               </div>
-                            <div className="increment py-2 border rounded-full w-6 h-6 flex justify-center items-center bg-white "><GoDash className=" rounded-full " /></div>
+                            <div 
+                              onClick={()=>dispatch(decrementProduct({
+                                 id:isCartData?.id
+                              }))}
+                            className="increment py-2 border rounded-full w-6 h-6 flex justify-center items-center bg-white "><GoDash className=" rounded-full " /></div>
                          </Button>
-                         <div className="decrement xs:w-full md:w-[70%]">
-                           <Button style={{width:"100%"}} className="">
-                             <div className="cart text-black  py-2 flex justify-center items-center gap-2"> <IoBagHandle  className="text-[18px] "/> <p className=" font-sans font-semibold text-[16px]">Add to cart</p></div>
+                         <div className=" xs:w-full md:w-[50%]">
+                           <Button
+                             disabled={ isCartData ? true : false}
+                              onClick={()=>{dispatch(addToCart({
+                              id:product?.id, 
+                              image:product?.images[0],
+                              name:product?.name,
+                              category:product?.category,
+                              price:product?.price,
+                              color:product?.color,
+                              quantity:1
+                             })),toast.success(`${product?.name} added succesfully....`)}}
+                              style={{width:"100%"}} className="">
+                             <div className="cart text-black  py-2 flex justify-center items-center gap-2">
+                                  <IoBagHandle  className="text-[18px] "/> 
+                                  <p className=" font-sans font-semibold text-[16px]">Add to cart</p>
+                             </div>
                            </Button>
+                         </div>
+                         <div
+                            onClick={()=>dispatch(addFavorite({
+                              id:product?.id, 
+                              image:product?.images[0],
+                              name:product?.name,
+                              category:product?.category,
+                              price:product?.price,
+                              color:product?.color,
+                              quantity:1
+                            }))}
+                         className="love w-[20%]">
+                             <Button disabled={favoriteData ? true : false } style={{width:"100%"}}>
+                             <div className="main py-2">
+                                <FaHeart className={`${favoriteData ? "text-red-600" : "text-black"} text-xl`} />
+                             </div>
+                             </Button>
                          </div>
                        </div>
                     </div>
@@ -216,7 +282,7 @@ const SingleProduct = () => {
           <div className="review">
              <div className="content">
                  <p className=" font-sans xs:text-[16px] md:text-[24px] font-semibold"> Customer Review</p>
-                 <div className="review grid grid-cols-1 xs:gap-2 md:gap-16 mt-8">
+                 <div className="review grid grid-cols-1 md:grid-cols-2 xs:gap-2 md:gap-16 mt-8">
                     {
                       reviewData.map((item)=>
                        <div key={item?.id} className="content  w-full">
@@ -231,25 +297,21 @@ const SingleProduct = () => {
                                  </div>
                              </div>
                              <div className="start">
-                              <div className="content">
-                                 {(()=>{
+                             <div className="content flex items-center gap-2">
+                                 {(() => {
+                                    const review = parseInt(item?.review);
+                                    let star = [];
 
-                                   const review = parseInt(item?.review)
-                                   let star = []
-
-                                   if((review)){
-                                       for(let i = 0; i < review; i++ ){
-                                          console.log("start",i)
-                                        return  star.push(<span key={i}>Star</span>);
+                                    if (review) {
+                                       for (let i = 0; i < review; i++) {
+                                       star.push(<FaRegStar className=" text-yellow-600" key={i} />); // Added key prop for list items
                                        }
-                                       return star
-                                   }else{
-                                     return <span>No review</span>
-                                   }
-
-
-                                   })()}
-                              </div>
+                                       return star; // Return the array after the loop
+                                    } else {
+                                       return <span>No review</span>;
+                                    }
+                                 })()}
+                                 </div>
                              </div>
                           </div>
                           <div className="pragraph my-4">

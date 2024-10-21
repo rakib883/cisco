@@ -71,7 +71,11 @@ function DiscoverSlider() {
                            </div>
                         </div>
                         <div className="image flex justify-center items-center w-[80%]">
-                            <img className=" xs:h-[140px] h-[180px]  w-[180px]" src={item?.image} alt="" />
+                          <img
+                            className="h-auto w-full max-w-[180px] xs:max-h-[140px] sm:max-h-[250px] md:max-h-[250px] lg:max-h-[300px] md:max-w-[200px] lg:max-w-[300px]"
+                            src={item?.image}
+                            alt=""
+                          />
                         </div>
                       </div>
                   </div>

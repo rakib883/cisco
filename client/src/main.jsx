@@ -22,6 +22,13 @@ import OrderPage from './UI/OrderPage';
 import Cancell from './Page/Cancell';
 import Account from './Page/Account';
 import Sucess from './Page/Sucess';
+import MyOrder from './Page/MyOrder';
+import Admin from './Page/Admin';
+import AdminHome from './Page/AdminHome';
+import ManageOrder from './Page/ManageOrder';
+import Favorite from './Page/Favorite';
+import PendingOrder from './Page/PendingOrder';
+
 
 const router = createBrowserRouter([
   {
@@ -89,6 +96,10 @@ const router = createBrowserRouter([
                   element:<Account/>
                 },
                 {
+                    path:"my-order",
+                    element:<MyOrder/>
+                },
+                {
                   path:"order-now",
                   element:<OrderPage/>
                 }
@@ -99,7 +110,7 @@ const router = createBrowserRouter([
         
        },
        {
-        path:"/pament-successful",
+        path:"/pament-succesfully",
         element:<Sucess/>
        },
         
@@ -107,12 +118,42 @@ const router = createBrowserRouter([
         path:"/pament-cancell",
         element:<Cancell/>
       },
+      {
+        path:"/admin",
+        element:<Admin/>,
+        children:[
+          {
+            path:"",
+            element:<AdminHome/>
+          },
+          {
+            path:"dashbord",
+            element:<div>order</div>
+          },
+          {
+            path:"manage-order",
+            element:<ManageOrder/>
+          },
+          {
+            path:"pending-order",
+            element:<PendingOrder/>
+          },
+          {
+            path:"*",
+            element:<>Not found</>
+          }
+        ]
+      },{
+         path:"/favorite",
+         element:<Favorite/>
+      },
       
        {
         path:"*",
         element:<div className="text-center py-20">Page developing continue</div>
         
        },
+       
     ]
   },
 ]);

@@ -12,6 +12,8 @@ import { RxCross2 } from "react-icons/rx";
 import { Input, InputGroup } from 'rsuite';
 import SearchIcon from '@rsuite/icons/Search';
 import Border from "../../UI/Border";
+import { FaRegHeart } from "react-icons/fa";
+import { FachingData } from "../../UI/FaceData";
 
 const Header = () => {
 
@@ -28,9 +30,9 @@ const Header = () => {
      const [showMenu,setShowMenu] = useState(true)
 
     //  redux items area srarrt
-    const userSelectorData = useSelector((data)=>data?.myStore?.newLoggedUser?.user)
-    const cartDataItem = useSelector((item)=>item?.myStore?.CartData)
-    
+    const {CartData,whilist,newLoggedUser} = useSelector((data)=>data?.myStore)
+
+
     // open profile area start
     const [userProfile,setUserProfile] = useState(false)
 
@@ -39,7 +41,6 @@ const Header = () => {
 
     // mobile nav handeler
     const mobileNav = useRef(null)
-
     useEffect(() => {
         const handleClickOutside = (e) => {
           if (mobileNav.current && !mobileNav.current.contains(e.target)) {
@@ -54,7 +55,70 @@ const Header = () => {
         };
       }, [mobileNav]);
 
-      console.log(mobileMenu)
+
+
+    //   profile open and close outside Handeler
+    const openProfile = useRef(null)
+    
+        useEffect(()=>{
+            const outSide =(e)=>{
+                if(openProfile.current && !openProfile.current.contains(e.target)){
+                    setUserProfile(false)
+                }
+            }
+
+            document.addEventListener("mousedown",outSide)
+
+            return ()=>{
+                document.removeEventListener("mousedown",outSide)
+            }
+        })
+
+
+
+    //    filter area start 
+    const [inputData,setInputData] = useState("")
+    const [product,setProduct] = useState([])
+    const [filter,setFilter] = useState(false)
+    const filterCloseOutside = useRef(null)
+    useEffect(()=>{
+        const filterData = async()=>{
+           try{
+            const response = await FachingData("https://cisco-sigma.vercel.app/product")
+            setProduct(response)
+           }catch(error){
+            console.log(error)
+           }
+        }
+        filterData()
+    },[])
+
+    // after user input area start
+    useEffect(()=>{
+       const afterUserInput =()=>{
+         try{
+             const filterData = product.filter((item)=>item?.name.toLowerCase().includes(inputData.toLowerCase()))
+             setProduct(filterData)
+         }catch(error){
+            console.log(error)
+         }
+       }
+       afterUserInput()
+    },[inputData])
+   
+   useEffect(()=>{
+        const filterOpenClose = (e)=>{
+            if(filterCloseOutside.current && !filterCloseOutside.current.contains(e.target)){
+                setFilter(false)
+            }
+        }
+
+        document.addEventListener("mousedown",filterOpenClose)
+
+        return ()=>{
+            document.removeEventListener("mousedown",filterOpenClose)
+        }
+   },[])
   return (
     <div className="bg-white shadow-xl sticky top-0 z-30"> 
         {/* mobile menu area start */}
@@ -81,7 +145,7 @@ const Header = () => {
                         </p>
                     </div>
                     <div className="search-bar">
-                        <div className="input mx-4 my-2 cursor-pointer">
+                        <div className="input lg:mx-4 my-2 cursor-pointer">
                             <InputGroup>
                                 <Input placeholder="Search product" />
                                 <InputGroup.Addon className=" cursor-pointer">
@@ -132,19 +196,38 @@ const Header = () => {
                         }
                     </div> 
                     :
-                    <div className="search ">
-                        <div className="item md:mx-[150px] lg:mx-[220px] ">
-                            <div className="item bg-gray-100 flex justify-between w-full items-center px-4 ">
+                    <div className="search sm:hidden md:block ">
+                        <div className="item  md:mx-[150px] lg:mx-[220px] relative ">
+                            <div onFocus={()=>setFilter(true)} className="item bg-gray-100 flex justify-between w-full items-center px-4 ">
                                 <div  className="icon py-3.5">
                                     <CiSearch className=" text-[25px] cursor-pointer" />
                                 </div>
                                 <div className="search w-full ">
-                                    <input className=" w-full  bg-gray-100 placeholder:font-sans font-sans outline-none border-none" type="text" placeholder="Search product" />
+                                    <input value={inputData} onChange={(e)=>setInputData(e.target.value)} className=" w-full  bg-gray-100 placeholder:font-sans font-sans outline-none border-none" type="text" placeholder="Search product" />
                                 </div>
                                 <div onClick={()=>setShowMenu(true)}  className="cross">
                                 <HiMiniXMark className=" text-[25px] cursor-pointer" />
                                 </div>
                             </div>
+                            {
+                                filter &&
+                                <div ref={filterCloseOutside} className="search-area absolute bg-white w-full">
+                                    <div className="content p-4 flex flex-col gap-2 max-h-80 overflow-y-auto ">
+                                        {
+                                            product.map((item)=>
+                                                <Link onClick={()=>setFilter(false)} to={`product/${item?.id}`} key={item?.id} className="item cursor-pointer hover:bg-gray-300 px-2 flex items-center gap-1">
+                                                    <div className="icon">
+                                                      <CiSearch className=" text-[16px] cursor-pointer" />
+                                                    </div>
+                                                    <div className="title">
+                                                        <p>{item?.name}</p>
+                                                    </div>
+                                                </Link>
+                                            )
+                                        }
+                                    </div>
+                                </div>
+                             }
                         </div>    
                     </div>
                     }
@@ -153,21 +236,23 @@ const Header = () => {
             </div>
             <div className="user my-4">
                 <div className="user-icon flex justify-end gap-2">
-                      <div onClick={()=>setShowMenu(false)} className="cart hover:bg-gray-200 h-10 w-10 duration-300 rounded-full flex justify-center items-center">
-                         <CiSearch className=" text-[25px] cursor-pointer" />
-                      </div>
+                        <div className="hidden lg:block ">
+                            <div onClick={()=>setShowMenu(false)} className="cart hover:bg-gray-200 h-10 w-10 duration-300 rounded-full flex justify-center items-center">
+                                <CiSearch className=" text-[25px] cursor-pointer" />
+                            </div>
+                        </div>     
                       <div className="cart hover:bg-gray-200 h-10 w-10 duration-300 rounded-full flex justify-center items-center">
                          {
-                            userSelectorData ?
+                            newLoggedUser?.user ?
                             <div  className="profile ">
                                 <div onClick={()=>setUserProfile(!userProfile)} className="image-area relative h-[30px] w-[30px] rounded-full cursor-pointer">
-                                    <img className="w-full h-full rounded-full" src={userSelectorData?.photoURL} alt="" />
+                                    <img className="w-full h-full rounded-full" src={newLoggedUser?.user?.photoURL} alt="" />
                                      {
                                         userProfile &&
-                                        <div className="profile absolute top-12 right-[-50px] w-[300px]">
-                                        <div className="items mx-8">
-                                            <Profile imageLink={userSelectorData?.photoURL} email={userSelectorData?.email} userName={userSelectorData?.displayName}/>
-                                        </div>
+                                        <div ref={openProfile} className="profile absolute top-12 right-[-50px] w-[300px]">
+                                            <div className="items mx-8">
+                                                <Profile ile imageLink={newLoggedUser?.user?.photoURL} email={newLoggedUser?.user?.email} userName={newLoggedUser?.displayName}/>
+                                            </div>
                                         </div>
                                      }
                                 </div>
@@ -178,13 +263,21 @@ const Header = () => {
                          }
                          
                       </div>
+                      <Link to="/favorite" className="cart relative hover:bg-gray-200 h-10 w-10 duration-300 rounded-full flex justify-center items-center">
+                         <div className="item">
+                             <FaRegHeart className=" text-[25px] cursor-pointer" />
+                         </div>
+                         <div className="overlay flex text-[10px] justify-center items-center text-white bg-indigo-600 w-4 h-4 rounded-full absolute top-0 right-0">
+                             {whilist?.length}
+                         </div>
+                      </Link>
                       <Link to="/user" className="cart relative hover:bg-gray-200 h-10 w-10 duration-300 rounded-full flex justify-center items-center">
                          <div className="item">
                              <BsMinecartLoaded className=" text-[25px] cursor-pointer" />
                          </div>
                          <div className="overlay flex text-[10px] justify-center items-center text-white bg-indigo-600 w-4 h-4 rounded-full absolute top-0 right-0">
                              {
-                                cartDataItem?.length
+                                CartData?.length
                              }
                          </div>
                       </Link>

@@ -6,7 +6,7 @@ const PriceFormat = ({price,className}) => {
         minimumFractionDigits:2
     })
   return (
-    <div className={twMerge('', className ? className :"")}>{format}</div>
+    <span className={twMerge('', className ? className :"")}>{format}</span>
   )
 }
 

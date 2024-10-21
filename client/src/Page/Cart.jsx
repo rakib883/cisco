@@ -29,6 +29,7 @@ const Cart = () => {
     //  send to redux data 
     const increment = useDispatch()
     const decrement = useDispatch()
+  
   return (
     <div>
         {

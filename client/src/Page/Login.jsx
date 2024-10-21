@@ -32,7 +32,8 @@ const navagetor = useNavigate()
         .then((result)=>{
             toast.success("Login successfully"); 
             userDispatch(loggedUser({
-               user:result.user
+               user:result.user,
+               email:result.email
             })) 
 
             navagetor("/user")

@@ -73,7 +73,7 @@ export const ReviewSlider = ({userReview})=>{
         }
        
       </Swiper>
-      <div className="icon w-full flex justify-between mt-4 absolute top-[50%]">
+      <div className="icon w-full flex justify-between mt-4 absolute top-[50%] z-40">
         <div ref={prevButtonRef} className="custom-prev cursor-pointer">
             <IoIosArrowDropleft className="text-4xl cursor-pointer" />
         </div>  

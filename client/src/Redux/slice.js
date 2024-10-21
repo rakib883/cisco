@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   CartData:[],
+  whilist:[],
   newLoggedUser:null
 }
 
@@ -38,12 +39,24 @@ export const myState = createSlice({
          }else{
            existingData.quantity --
          }
-      }
+      },
+      addFavorite:(state,action)=>{
+        const existingFavorite = state.whilist.find((item)=>item.id === action.payload.id)
+        if(existingFavorite){
+          existingFavorite.quantity++
+        }else{
+           state.whilist.push(action.payload)
+        }
+      },
+      removeFavorite:(state,action)=>{
+        state.whilist = state.whilist.filter((item)=>item.id !== action.payload.id)
+       
+    }
      
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { loggedUser,addToCart,decrementProduct,cartItemRemove,removeUser,emptyCard} = myState.actions
+export const { loggedUser,addToCart,decrementProduct,cartItemRemove,removeUser,emptyCard,addFavorite,removeFavorite} = myState.actions
 
 export default myState.reducer

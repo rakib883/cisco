@@ -57,7 +57,7 @@ const signOutHandeler =()=>{
                         <div className="icon">
                         <ImFileWord className="text-xl" />
                         </div>
-                        <Link to="user/order-now" className="text">
+                        <Link to="user/my-order" className="text">
                             <p>My order</p>
                         </Link>
                     </div>
@@ -66,7 +66,9 @@ const signOutHandeler =()=>{
                         <IoIosHeartEmpty className="text-xl" />
                         </div>
                         <div className="text">
-                            <p>Whishlist</p>
+                           <Link to="/favorite">
+                             <p>Whishlist</p>
+                           </Link>
                         </div>
                     </div>
                  </div>

@@ -7,11 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import { FaPlus } from "react-icons/fa";
 import { GoDash } from "react-icons/go";
-import {addToCart, cartItemRemove, decrementProduct} from "../Redux/slice"
+import { addToCart, cartItemRemove, decrementProduct } from "../Redux/slice"
 import PriceFormat from "./PriceFormat";
 
 
 const OrderPage = () => {
+  const dispatch = useDispatch()
+
+
   const districts = [
     {
       district: "Dhaka",
@@ -74,6 +77,8 @@ const OrderPage = () => {
     value: item.district,
   }));
 
+
+
   const [selectedDistrict, setSelectedDistrict] = useState(null);
   const [upazilas, setUpazilas] = useState([]);
 
@@ -85,55 +90,80 @@ const OrderPage = () => {
     setUpazilas(districtData ? districtData.upazilas : []);
   };
 
-  const [getUpsela,setUpzela] = useState("")
 
-  const getUpzelaData =(value)=>{
+
+  const [getUpsela, setUpzela] = useState("")
+
+  const getUpzelaData = (value) => {
     setUpzela(value)
   }
-//  address open handeler
-const [isOpen,setOpen] = useState(false)
-// shiping address areastart
-const [isOpenShiping,setShiping] = useState(false)
+  //  address open handeler
+  const [isOpen, setOpen] = useState(false)
+  // shiping address areastart
+  const [isOpenShiping, setShiping] = useState(false)
 
-// redux data area start
-const reduxData = useSelector((item)=>item?.myStore?.CartData)
-const incrementDispatch = useDispatch()
-const decrementDispatch = useDispatch()
-const [total,setTotal] = useState()
+  // redux data area start
+  const { CartData, newLoggedUser } = useSelector((item) => item?.myStore)
+  const [total, setTotal] = useState()
 
- useEffect(()=>{
-    let total =  0
-    reduxData.map((item)=>{
-      total += (item?.quantity)*(item?.price)
+  useEffect(() => {
+    let total = 0
+    CartData.map((item) => {
+      total += (item?.quantity) * (item?.price)
       setTotal(total)
     })
 
- },[reduxData])
+  }, [CartData])
 
- const removeOrderPageData = useDispatch()
+  const removeOrderPageData = useDispatch()
 
-// pament handeler area start
+  // pament handeler area start
 
-const orderHandeler =async()=>{
-    try{
-       const stripe = await loadStripe("pk_test_51PWscOL3BkBJk9RpVuFlO4f7SrTvDNHnFCVae0x6buv1S703qEvd3iEnDfqVQU9Iz1z6WDhV3M8IfhS1Za0O8v1z00UzkBSn5i")
-       const response = await fetch("https://cisco-sigma.vercel.app/create-checkout-session",{
+  const userEmail = newLoggedUser.user.email;
+  const  newProductArray = CartData.map((item)=>({
+    name:item?.name,
+    category:item?.category,
+    color:item?.color,
+    price:item?.price,
+    quantity:item?.quantity,
+    image:item?.image,
+    size:item?.size,
+    email:userEmail,
+    deliveryDate:"",
+    status:"pending"
+  }))
+  
+  console.log(newProductArray)
+ console.log(CartData)
+  const orderHandeler = async () => {
+
+    try {
+      const stripe = await loadStripe("pk_test_51PWscOL3BkBJk9RpVuFlO4f7SrTvDNHnFCVae0x6buv1S703qEvd3iEnDfqVQU9Iz1z6WDhV3M8IfhS1Za0O8v1z00UzkBSn5i")
+      const response = await fetch("https://cisco-sigma.vercel.app/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        }, body: JSON.stringify(newProductArray)
+
+      })
+
+      const session = await response.json()
+      console.log("hello", session?.id)
+      const result = stripe.redirectToCheckout({
+        sessionId: session.id
+      })
+
+      fetch("https://cisco-sigma.vercel.app/save-order",{
         method:"POST",
         headers:{
           "Content-Type" : "application/json"
-        },body:JSON.stringify(reduxData)
-       })
+        },body:JSON.stringify(newProductArray)
+      })
 
-       const session = await response.json()
-       console.log("hello",session?.id)
-       const result = stripe.redirectToCheckout({
-        sessionId:session.id
-       })
-    
-    }catch(error){
+    } catch (error) {
       console.log(error)
     }
-}
+  }
 
 
 
@@ -142,247 +172,247 @@ const orderHandeler =async()=>{
     <div>
       <div className="content mx-8 md:mx-20 my-8">
         {
-          reduxData.length > 0 ? 
-        <div className="content">
-          <div className="title">
-            <InnerTitle title="Checkout now" />
-          </div>
-
-          <div className="item md:flex gap-4">
-            <div className="info w-full lg:w-[60%] flex flex-col gap-4">
-              <div className="contact-info">
-                <div className="contact-info border rounded-xl">
-                  <div className="item mx-4 py-2 flex items-center">
-                    <div className="info flex-1">
-                      <div className="info-tem flex items-center gap-4">
-                        <div className="icon py-4">
-                          <FaRegUserCircle className="text-xl" />
-                        </div>
-                        <div className="text">
-                          <div className="info">
-                            <p className="text-[16px] font-semibold">Contact info</p>
-                          </div>
-                          <div className="info lg:flex gap-2 items-center">
-                            <div className="item">
-                              <p>Muksudpur, Gopalgonj</p>
-                            </div>
-                            <div className="item">
-                              <p>0172826262111</p>
-                            </div>
-                            <div className="item">
-                              <p>sheikhrakib883@gmail.com</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div onClick={()=>setOpen(!isOpen)} className="button">
-                      <button className="bg-[#f8fafc] px-2 py-2 rounded-md">
-                        Change address
-                      </button>
-                    </div>
-                  </div>
-                 { 
-                  isOpen &&
-                  <div className="item">
-                    <div className="border-area">
-                      <Border />
-                    </div>
-
-                    <div className="content mx-4">
-                      <div className="form-area py-4">
-                        <div className="phon-number">
-                          <div className="content flex gap-2">
-                            <div className="phone w-full">
-                              <Input placeholder="Phone number" />
-                            </div>
-                            <div className="email w-full">
-                              <Input placeholder="Email" />
-                            </div>
-                          </div>
-                          <div className="content flex gap-2 mt-4">
-                            
-                            <div className="phone w-full">
-                              <InputPicker
-                                data={districtOptions}
-                                placeholder="Select District"
-                                onChange={handleDistrictChange}
-                                className="w-full"
-                              />
-                            </div>
-
-                              <div className="upazila w-full">
-                                <InputPicker
-                                  data={upazilas.map((upazila) => ({
-                                    id:upazila?.id,
-                                    label: upazila,
-                                    value: upazila,
-                                  }))}
-                                  onChange={getUpzelaData}
-                                  placeholder="Select Upazila"
-                                  className="w-full"
-                                />
-                              </div>
-                    
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  }
-                </div>
+          CartData.length > 0 ?
+            <div className="content">
+              <div className="title">
+                <InnerTitle title="Checkout now" />
               </div>
-              <div className="contact-info">
-                <div className="contact-info border rounded-xl">
-                  <div className="item mx-4 py-2 flex items-center">
-                    <div className="info flex-1">
-                      <div className="info-tem flex items-center gap-4">
-                        <div className="icon py-4">
-                          <FaRegUserCircle className="text-xl" />
-                        </div>
-                        <div className="text">
-                          <div className="info">
-                            <p className="text-[16px] font-semibold">Shiping address</p>
-                          </div>
-                          <div className="info lg:flex gap-2 items-center">
-                            <div className="item">
-                              <p>Muksudpur, Gopalgonj</p>
-                            </div>
-                            <div className="item">
-                              <p>0172826262111</p>
-                            </div>
-                            <div className="item">
-                              <p>sheikhrakib883@gmail.com</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div onClick={()=>setShiping(!isOpenShiping)} className="button">
-                      <button className="bg-[#f8fafc] px-2 py-2 rounded-md">
-                        Change shiping 
-                      </button>
-                    </div>
-                  </div>
-                 { 
-                  isOpenShiping &&
-                  <div className="item">
-                    <div className="border-area">
-                      <Border />
-                    </div>
 
-                    <div className="content mx-4">
-                      <div className="form-area py-4">
-                        <div className="phon-number">
-                          <div className="content flex gap-2">
-                            <div className="phone w-full">
-                              <Input placeholder="First name" />
+              <div className="item md:flex gap-4">
+                <div className="info w-full lg:w-[60%] flex flex-col gap-4">
+                  <div className="contact-info">
+                    <div className="contact-info border rounded-xl">
+                      <div className="item mx-4 py-2 flex items-center">
+                        <div className="info flex-1">
+                          <div className="info-tem flex items-center gap-4">
+                            <div className="icon py-4">
+                              <FaRegUserCircle className="text-xl" />
                             </div>
-                            <div className="email w-full">
-                              <Input placeholder="Last name" />
-                            </div>
-                          </div>
-                          <div className="content flex gap-2 mt-4">
-                             <div className="phone w-full">
-                                <Input placeholder="Lane " />
-                             </div>
-                             <div className="email w-full">
-                                <Input placeholder="house" />
+                            <div className="text">
+                              <div className="info">
+                                <p className="text-[16px] font-semibold">Contact info</p>
                               </div>
+                              <div className="info lg:flex gap-2 items-center">
+                                <div className="item">
+                                  <p>Muksudpur, Gopalgonj</p>
+                                </div>
+                                <div className="item">
+                                  <p>0172826262111</p>
+                                </div>
+                                <div className="item">
+                                  <p>sheikhrakib883@gmail.com</p>
+                                </div>
+                              </div>
+                            </div>
                           </div>
+                        </div>
+                        <div onClick={() => setOpen(!isOpen)} className="button">
+                          <button className="bg-[#f8fafc] px-2 py-2 rounded-md">
+                            Change address
+                          </button>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  }
-                </div>
-              </div>
-            </div>
+                      {
+                        isOpen &&
+                        <div className="item">
+                          <div className="border-area">
+                            <Border />
+                          </div>
 
-            <div className="order-info w-full mt-4 md:mt-0 lg:w-[40%]">
-              <div className="product">
-                <div className="item flex gap-4 flex-col">
-                  {
-                     reduxData?.map((item)=>
-                      <div key={item?.id} className="item md:flex items-center gap-4">
-                        <div className="image-area flex justify-center items-center">
-                          <div className="item h-[150px] w-[150px] bg-[#f1f5f9] rounded-xl ">
-                            <img className=" object-cover" src={item?.image} alt="" />
+                          <div className="content mx-4">
+                            <div className="form-area py-4">
+                              <div className="phon-number">
+                                <div className="content flex gap-2">
+                                  <div className="phone w-full">
+                                    <Input placeholder="Phone number" />
+                                  </div>
+                                  <div className="email w-full">
+                                    <Input placeholder="Email" />
+                                  </div>
+                                </div>
+                                <div className="content flex gap-2 mt-4">
+
+                                  <div className="phone w-full">
+                                    <InputPicker
+                                      data={districtOptions}
+                                      placeholder="Select District"
+                                      onChange={handleDistrictChange}
+                                      className="w-full"
+                                    />
+                                  </div>
+
+                                  <div className="upazila w-full">
+                                    <InputPicker
+                                      data={upazilas.map((upazila) => ({
+                                        id: upazila?.id,
+                                        label: upazila,
+                                        value: upazila,
+                                      }))}
+                                      onChange={getUpzelaData}
+                                      placeholder="Select Upazila"
+                                      className="w-full"
+                                    />
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                        <div className="text-area flex-1">
-                           <div className="title flex justify-between">
-                               <div className="title">
-                                 <p className=" font-semibold">{item?.name}</p>
-                                 <div className="price flex gap-4 items-center">
+                      }
+                    </div>
+                  </div>
+                  <div className="contact-info">
+                    <div className="contact-info border rounded-xl">
+                      <div className="item mx-4 py-2 flex items-center">
+                        <div className="info flex-1">
+                          <div className="info-tem flex items-center gap-4">
+                            <div className="icon py-4">
+                              <FaRegUserCircle className="text-xl" />
+                            </div>
+                            <div className="text">
+                              <div className="info">
+                                <p className="text-[16px] font-semibold">Shiping address</p>
+                              </div>
+                              <div className="info lg:flex gap-2 items-center">
+                                <div className="item">
+                                  <p>Muksudpur, Gopalgonj</p>
+                                </div>
+                                <div className="item">
+                                  <p>0172826262111</p>
+                                </div>
+                                <div className="item">
+                                  <p>sheikhrakib883@gmail.com</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div onClick={() => setShiping(!isOpenShiping)} className="button">
+                          <button className="bg-[#f8fafc] px-2 py-2 rounded-md">
+                            Change shiping
+                          </button>
+                        </div>
+                      </div>
+                      {
+                        isOpenShiping &&
+                        <div className="item">
+                          <div className="border-area">
+                            <Border />
+                          </div>
+
+                          <div className="content mx-4">
+                            <div className="form-area py-4">
+                              <div className="phon-number">
+                                <div className="content flex gap-2">
+                                  <div className="phone w-full">
+                                    <Input placeholder="First name" />
+                                  </div>
+                                  <div className="email w-full">
+                                    <Input placeholder="Last name" />
+                                  </div>
+                                </div>
+                                <div className="content flex gap-2 mt-4">
+                                  <div className="phone w-full">
+                                    <Input placeholder="Lane " />
+                                  </div>
+                                  <div className="email w-full">
+                                    <Input placeholder="house" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+
+                <div className="order-info w-full mt-4 md:mt-0 lg:w-[40%]">
+                  <div className="product">
+                    <div className="item flex gap-4 flex-col">
+                      {
+                        CartData?.map((item) =>
+                          <div key={item?.id} className="item md:flex items-center gap-4">
+                            <div className="image-area flex justify-center items-center">
+                              <div className="item h-[150px] w-[150px] bg-[#f1f5f9] rounded-xl ">
+                                <img className=" object-cover" src={item?.image} alt="" />
+                              </div>
+                            </div>
+                            <div className="text-area flex-1">
+                              <div className="title flex justify-between">
+                                <div className="title">
+                                  <p className=" font-semibold">{item?.name}</p>
+                                  <div className="price flex gap-4 items-center">
                                     <p className="mt-2">size : {item?.size}</p>
                                     <p>Color : {item?.color}</p>
-                                 </div>
-                               </div>
-                               <div className="prize">
-                                 <p>${item?.price}</p>
-                               </div>
-                           </div>
-                           <div className=" flex justify-between my-8">
-                               <div className="flex gap-4 items-center">
-                                 <div onClick={()=>incrementDispatch(addToCart({
-                                  id:item?.id
-                                 }))} className="increment border rounded-full h-8 cursor-pointer w-8 flex justify-center items-center">
-                                     <FaPlus />
-                                 </div>
-                                 <div className="increment">
-                                     <p>{item?.quantity}</p>
-                                 </div>
-                                 <div onClick={()=>decrementDispatch(decrementProduct({
-                                  id:item?.id
-                                 }))} className="increment border rounded-full h-8 cursor-pointer w-8 flex justify-center items-center">
-                                     <GoDash />
-                                 </div>
-                               </div>
-                               <div onClick={()=>removeOrderPageData(cartItemRemove({
-                                 id:item?.id
-                               }))} className=" bg-[#f8fafc] rounded-md flex items-center justify-center">
-                                 <button className=" px-4 ">Remove</button>
-                               </div>
-                           </div>
+                                  </div>
+                                </div>
+                                <div className="prize">
+                                  <p>${item?.price}</p>
+                                </div>
+                              </div>
+                              <div className=" flex justify-between my-8">
+                                <div className="flex gap-4 items-center">
+                                  <div onClick={() => dispatch(addToCart({
+                                    id: item?.id
+                                  }))} className="increment border rounded-full h-8 cursor-pointer w-8 flex justify-center items-center">
+                                    <FaPlus />
+                                  </div>
+                                  <div className="increment">
+                                    <p>{item?.quantity}</p>
+                                  </div>
+                                  <div onClick={() => dispatch(decrementProduct({
+                                    id: item?.id
+                                  }))} className="increment border rounded-full h-8 cursor-pointer w-8 flex justify-center items-center">
+                                    <GoDash />
+                                  </div>
+                                </div>
+                                <div onClick={() => dispatch(cartItemRemove({
+                                  id: item?.id
+                                }))} className=" bg-[#f8fafc] rounded-md flex items-center justify-center">
+                                  <button className=" px-4 ">Remove</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      }
+                    </div>
+                    <Border />
+                    <div className="main-area">
+                      <div className="shiping my-4 flex flex-col gap-3">
+                        <div className="subtotal flex justify-between">
+                          <div className="title"><p className=" text-base  text-[#6a96c0]">Subtotal</p></div>
+                          <div className="price"><p className=" text-[14px] font-semibold"> <PriceFormat price={total} /> </p></div>
+                        </div>
+                        <div className="subtotal flex justify-between">
+                          <div className="title"><p className=" text-base  text-[#6a96c0]">Shipping estimate</p></div>
+                          <div className="price"><p className=" text-[14px] font-semibold">--</p></div>
+                        </div>
+                        <div className="subtotal flex justify-between">
+                          <div className="title"><p className=" text-base  text-[#6a96c0]">Tax estimate</p></div>
+                          <div className="price"><p className=" text-[14px] font-semibold">--</p></div>
+                        </div>
+                        <div className="subtotal flex justify-between">
+                          <div className="title"><p className=" text-base  text-[black]">Order total</p></div>
+                          <div className="price"><p className=" text-[14px] font-semibold"> <PriceFormat price={total} /> </p></div>
                         </div>
                       </div>
-                    )
-                  }
-                </div>
-                <Border/>
-               <div className="main-area">
-                  <div className="shiping my-4 flex flex-col gap-3">
-                    <div className="subtotal flex justify-between">
-                       <div className="title"><p className=" text-base  text-[#6a96c0]">Subtotal</p></div>
-                       <div className="price"><p className=" text-[14px] font-semibold"> <PriceFormat price={total} /> </p></div>
-                    </div>
-                    <div className="subtotal flex justify-between">
-                       <div className="title"><p className=" text-base  text-[#6a96c0]">Shipping estimate</p></div>
-                       <div className="price"><p className=" text-[14px] font-semibold">--</p></div>
-                    </div>
-                    <div className="subtotal flex justify-between">
-                       <div className="title"><p className=" text-base  text-[#6a96c0]">Tax estimate</p></div>
-                       <div className="price"><p className=" text-[14px] font-semibold">--</p></div>
-                    </div>
-                    <div className="subtotal flex justify-between">
-                       <div className="title"><p className=" text-base  text-[black]">Order total</p></div>
-                       <div className="price"><p className=" text-[14px] font-semibold"> <PriceFormat price={total} /> </p></div>
-                    </div>
-                  </div>
-                   <div className="butt w-full">
-                      <div onClick={orderHandeler}>
+                      <div className="butt w-full">
+                        <div onClick={orderHandeler}>
                           <button type="submit" className=" bg-black w-full text-white px-4 active:bg-white active:text-black  py-3 rounded-3xl">Confarm order now</button>
+                        </div>
                       </div>
                     </div>
-               </div>
+                  </div>
+                </div>
               </div>
+            </div> :
+            <div className="main text-center">
+              <InnerTitle title="Your cart is empty" />
             </div>
-          </div>
-        </div> :
-        <div className="main text-center">
-           <InnerTitle title="Your cart is empty" />
-        </div>
         }
       </div>
     </div>

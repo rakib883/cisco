@@ -3,11 +3,12 @@ import Border from "../UI/Border"
 import InnerTitle from "../UI/InnerTitle"
 import { DatePicker, Input, SelectPicker } from "rsuite"
 import PasswordHidden from "../UI/PasswordHidden"
+import { useSelector } from "react-redux"
+import MyOrder from "./MyOrder"
 
 const Account = () => {
    const [acountInfo,setAccountInfo] = useState(1)
 //   Gender area stata
-console.log(typeof(acountInfo))
 const gender = [
    {name : "Male", id:1},
    {name : "Femel", id:2},
@@ -29,7 +30,14 @@ const accountItemHandeler =(e)=>{
     setAccountInfo(Number(userData))
 }
 
-console.log(typeof(acountInfo))
+// redux data area start
+const userData = useSelector((item)=>item?.myStore?.newLoggedUser?.user)
+
+
+// profile image update
+const [profile,setUploadImage] = useState("")
+
+console.log(profile)
   return (
     <div>
         <div className="content mx-8 lg:mx-[150px] mt-[100px]">
@@ -40,10 +48,10 @@ console.log(typeof(acountInfo))
                    </div>
                    <div className="text flex gap-2 text-[14px] md:text-[18px]">
                         <div className="item"> 
-                            <p className=" font-semibold">Rakin Sheikh</p>
+                            <p className=" font-semibold">{userData?.displayName}</p>
                         </div>
                         <div className="item">
-                            <p>Sheikhrakib883@gmail.com</p>
+                            <p>{userData?.email}</p>
                         </div> 
                         <div className="item">
                            <p>Dhaka</p>
@@ -103,11 +111,12 @@ console.log(typeof(acountInfo))
                               <InnerTitle title="Accounts Information" />
                             </div>
                             <div className="main-content md:flex gap-10">
-                                 <div className="item w-full md:w-[10%] flex justify-center items-center md:justify-start md:items-start">
-                                    <div className="image h-[100px] w-[100px] rounded-full">
+                                 <label  className="item w-full md:w-[10%] flex justify-center items-center md:justify-start md:items-start">
+                                    <label htmlFor="file-upload" className="image relative h-[100px] w-[100px] rounded-full">
                                        <img className="rounded-full h-full w-full" src="https://i.ibb.co.com/2y96N1W/Whats-App-Image-2024-06-22-at-14-32-06-92634224.jpg" alt="" />
-                                    </div>
-                                 </div>
+                                       <input id="file-upload" onChange={(e)=>setUploadImage(e.target.files[0])}  className="sr-only top-[50%] absolute " type="file" name=""  />
+                                    </label>
+                                 </label>
                                  <div className="form w-full mt-4 md:w-[90%]">
                                     <div className="parent flex gap-2 flex-col">
                                        <div className="name-area md:flex gap-4">
@@ -170,7 +179,10 @@ console.log(typeof(acountInfo))
                         <div  className={` account-information`}>
                           <div className="item">
                              <div className="item my-2">
-                               <InnerTitle title="Order History"/>
+                             
+                             </div>
+                             <div className="item">
+                                <MyOrder/>
                              </div>
                           </div>
                         </div>

@@ -2,7 +2,7 @@ import { FaArrowRight } from "react-icons/fa6";
 const SpecialOffer = () => {
   return (
     <div>
-        <div className="content xs:mx-2 md:mx-2 lg:mx-10 mt-[50px] bg-[#f8fafc] lg:flex md:justify-between rounded-3xl">
+        <div className="content mt-[50px] bg-[#f8fafc] lg:flex md:justify-between rounded-3xl">
            <div className="title w-full lg:w-[50%]">
               <div className="content m-2 md:m-20 flex flex-col gap-8">
                     <p className=" font-sans font-bold py-4 lg:py-1 text-[20px] lg:text-[46px]">

@@ -21,9 +21,14 @@ const ProductList = ({item, quantity}) => {
   return (
  <div  className="parent mt-2">
     <div className="image-area relative group overflow-hidden  bg-[#f6f8fa] rounded-xl">
-        <Link to={`product/${id}`}>
-            <img className=" w-full h-[full] rounded-xl" src={images[0]} alt="" />
-        </Link>
+        <div className="image h-[200px] ">
+            <Link to={`product/${id}`} className="" >
+                  <img className=" w-full h-full object-contain" src={images[0]} alt="" />
+            </Link>
+            <div className="favorite">
+               hello
+            </div>
+        </div>
        <div className="overlay absolute -top-16 group-hover:top-[50%] duration-300 cursor-pointer w-full">
           {
             quantity ?

@@ -124,7 +124,7 @@ const filterHandeler =()=>{
 // dweskto[ filter area start]
 const [hoverStyle,setHover] = useState(1)
 
-console.log(filter)
+
   return (
     <div>
       
@@ -666,7 +666,7 @@ console.log(filter)
             <div className="all">
                {
                   hoverStyle === 5 &&
-                <div className="maon my-6  grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div className="maon my-6  grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4">
                     {
                       productData.length < 0 ?
                       <div className="main">{productData.message}</div> :

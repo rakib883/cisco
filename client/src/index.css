@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 a{
     color:red;
     background-color: gray;
@@ -19,3 +20,4 @@ a{
     height:2px;
     bottom: -18px;
 }
+

@@ -16,9 +16,10 @@ import PriceFormat from "./PriceFormat";
 
 
 function Slider({dataLink}) {
+  // dispatch area
+  const dispatch = useDispatch()
 
   const [arravalData,setIncomingData] = useState([])   
- 
   useEffect(()=>{
     const incomingData = async()=>{
       try{
@@ -45,13 +46,8 @@ function Slider({dataLink}) {
   const [border,setBorder] = useState({id: '1', number: 2, color: 'Black'})
   // size area start
   const [producrSize , setSize] = useState("X")
-  // product increment area start
-  const incremetDispatch = useDispatch()
-  // decrement product area
-  const decrementDispatch = useDispatch()
 
-  // redux area start
-  const productDisPatch = useDispatch()
+
   const cartDataItem = useSelector((item)=>item?.myStore?.CartData) 
   return (
     <div className="main ">
@@ -135,13 +131,13 @@ function Slider({dataLink}) {
                                  <div className=" bg-black px-4 py-2 rounded-2xl">
                                     <div className="flex items-center gap-4">
                                         <div 
-                                           onClick={()=>incremetDispatch(addToCart({
+                                           onClick={()=>dispatch(addToCart({
                                             id:item?.id
                                            }))}
                                         className="plus text-white bg-indigo-600 rounded-full w-8 h-8 flex justify-center items-center"><FaPlus /></div>
                                         <div className="quantity text-white">{existingCardData?.quantity}</div>
                                         <div 
-                                         onClick={()=>decrementDispatch(decrementProduct({
+                                         onClick={()=>dispatch(decrementProduct({
                                            id:item?.id
                                          }))}
                                         className="minus text-white bg-indigo-600 rounded-full w-8 h-8 flex justify-center items-center"><GoDash /></div>
@@ -150,7 +146,7 @@ function Slider({dataLink}) {
                                </div>:
                                <div className="content flex gap-2 justify-center items-center">
                                   <div
-                                   onClick={()=>productDisPatch(addToCart({
+                                   onClick={()=>dispatch(addToCart({
                                      id:item?.id,
                                      image:item?.images[0],
                                      name:item?.name,
@@ -217,7 +213,7 @@ function Slider({dataLink}) {
            }
           
         </Swiper>
-        <div className="icon flex gap-8 absolute -top-20 md:-top-20 right-0 ">
+        <div className="icon flex gap-8 absolute -top-20 md:-top-20 right-0   ">
            <div className="custom-prev cursor-pointer text-5xl"><button className="text-[25px] md:text-[35px]">‹</button></div>
            <div className="custom-next cursor-pointer text-5xl"> <button className="text-[25px] md:text-[35px]">›</button></div>
        </div>
