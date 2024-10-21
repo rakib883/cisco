@@ -152,7 +152,7 @@ app.post('/create-checkout-session', async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItem,
       mode: "payment",
-      success_url: `http://localhost:5173/pament-succesfully?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `https://cisco-client.vercel.app/pament-succesfully?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: "https://cisco-client.vercel.app/pament-cancell"
     })
     res.json(session)
