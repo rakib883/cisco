@@ -47,7 +47,7 @@ const MyOrder = () => {
                         </thead>
                         <tbody className="  ">
                             {
-                                allProduct.reverse().map((item)=>
+                                allProduct.map((item)=>
                                 <tr key={item?._id} className="main mt-8 ">
                                     <td className=" text-center py-1 ">
                                         <div className="py-2 w-[80px] h-[80px] cursor-pointer bg-gray-300 rounded-md mt-4">
