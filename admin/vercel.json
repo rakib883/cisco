@@ -1,19 +1,8 @@
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "index.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.js"
-    }
-  ],
-  "env": {
-    "MONGOOSE_URI": "@mongoose_uri",
-    "STRIPE_SECRET_KEY": "@stripe_secret_key"
-  }
+{"version":2,"builds":[{
+  "src" : "index.js",
+  "use" : "@vercel/node"
+}],
+
+"routes" : [{"src" : "/(.*)","dest" : "index.js"}]
+
 }
