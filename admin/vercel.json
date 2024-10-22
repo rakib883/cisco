@@ -9,12 +9,8 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/index.js"
+        "dest": "index.js"
       }
-    ],
-    "env": {
-      "MONGOOSE_URI": "@mongoose_uri",
-      "STRIPE_SECRET_KEY": "@stripe_secret_key"
-    }
+    ]
   }
   
