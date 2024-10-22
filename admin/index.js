@@ -53,13 +53,12 @@ app.get("/product", (req, res) => {
 
 
 app.get("/pending-order",async(req, res) => {
-  res.json({messsage:"test"})
-  // try{
-  //   const pendingOrder = await orderModel.find({status:"pending"})
-  //   res.send(pendingOrder);
-  // }catch(error){
-  //    console.log(error)
-  // }
+  try{
+    const pendingOrder = await orderModel.find({status:"pending"})
+    res.send(pendingOrder);
+  }catch(error){
+     console.log(error)
+  }
   
 });
 
