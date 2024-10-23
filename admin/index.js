@@ -1,37 +1,43 @@
 import express from "express";
 import cors from "cors";
-import { blog, explor, product, productDepardment, review, trending } from "./Conastance/index.mjs";
 import dotenv from 'dotenv';
-import Stripe from "stripe";
-import orderModel from "./model/orderModel.js";
-import { ObjectId } from 'mongodb';
+import productRouter from "./routers/productRouter.js"; // Correct import
+import { filterRouter } from "./routers/filterRoute.js";
+import Stripe from 'stripe';
 import { databaseConnect } from "./dbConfig/database.js";
-
-
-
-
-
-
-
-
-
-
+import orderInfo from "./routers/orderInfo.js";
 
 
 // Initialize dotenv to load environment variables
 dotenv.config();
-
+databaseConnect()
+// Initialize the Express app
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-databaseConnect()
+// Mount the product router at "/api/product"
+app.use("/api/product", productRouter);
+app.use("/api/product/filter",filterRouter)
+app.use("/api",orderInfo)
 
 
+
+
+
+
+
+// Test route
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+    res.send('Hello World!');
+});
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
 });
 
 
@@ -54,23 +60,6 @@ app.get('/', (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-// app.post("/register-user", async (req, res) => {
-//   const user = req.body;
-//   console.log(user);
-//   res.json(user);
-// });
-
-// app.get("/product", (req, res) => {
-//   res.send(product);
-// });
 
 
 
@@ -97,105 +86,45 @@ app.get('/', (req, res) => {
 //   }
 // });
 
-// app.get("/explor", (req, res) => {
-//   res.send(explor);
-// });
 
-// app.get("/catagor-deperdment", (req, res) => {
-//   res.send(productDepardment);
-// });
 
-// app.get("/trending-product", (req, res) => {
-//   res.send(trending);
-// });
+const stripe = new Stripe("sk_test_51PWscOL3BkBJk9RpLl0RojVbDLL5k1fzCtG9cetkJ1uH6Hd2LsfnTYSUC2Icqq5m9MQfRQWmNlcqIAnjUpVCDFZH00N1nAm0W7")
 
-// app.get("/review", (req, res) => {
-//   res.send(review);
-// });
+app.post('/create-checkout-session', async (req, res) => {
+  const productArray = req.body;
+  const lineItem = productArray.map((item) => ({
+    price_data: {
+      currency: "usd",
+      product_data: {
+        name: item?.name,
+        images: [item?.image],
+        metadata: {
+          email: item.email,
+          state: "processing",
+        }
+      },
+      unit_amount: Math.round(item?.price * 100),
+    },
+    quantity: item?.quantity
+  }))
 
-// app.get("/blog", (req, res) => {
-//   res.send(blog);
-// });
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: lineItem,
+      mode: "payment",
+      success_url: `http://localhost:5173/pament-succesfully?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: "http://localhost:5173/pament-cancell"
+    })
+    res.json(session)
+  } catch (error) {
+    console.log(error)
+  }
 
-// app.get("/:id", (req, res) => {
-//   const id = req?.params?.id;
-//   const categoryData = trending.filter((item) => item?.category === id.toLowerCase());
-//   if (categoryData.length === 0) {
-//     return res.json({ message: "No data found" });
-//   } else {
-//     return res.json(categoryData);
-//   }
-// });
-
-// app.get("/color/filter/:id", (req, res) => {
-//   const color = req.params.id;
-//   const colorFilter = product.filter((item) => item?.colors.includes(color));
-//   if (colorFilter.length === 0) {
-//     return res.json({ message: "Data not found" });
-//   }
-//   res.send(colorFilter);
-// });
-
-// app.get("/product/size/:id", (req, res) => {
-//   const size = req?.params?.id;
-//   const sizeFilter = product.filter((item) => item?.sizes?.includes(size));
-//   if (sizeFilter.length === 0) {
-//     return res.json({ message: "Data not found" });
-//   }
-//   return res.json(sizeFilter);
-// });
+});
 
 
 
-
-
-// const stripe = new Stripe("sk_test_51PWscOL3BkBJk9RpLl0RojVbDLL5k1fzCtG9cetkJ1uH6Hd2LsfnTYSUC2Icqq5m9MQfRQWmNlcqIAnjUpVCDFZH00N1nAm0W7")
-
-// app.post('/create-checkout-session', async (req, res) => {
-//   const productArray = req.body;
-//   const lineItem = productArray.map((item) => ({
-//     price_data: {
-//       currency: "usd",
-//       product_data: {
-//         name: item?.name,
-//         images: [item?.image],
-//         metadata: {
-//           email: item.email,
-//           state: "processing",
-//         }
-//       },
-//       unit_amount: Math.round(item?.price * 100),
-//     },
-//     quantity: item?.quantity
-//   }))
-
-//   try {
-//     const session = await stripe.checkout.sessions.create({
-//       payment_method_types: ["card"],
-//       line_items: lineItem,
-//       mode: "payment",
-//       success_url: `https://cisco-client.vercel.app/pament-succesfully?session_id={CHECKOUT_SESSION_ID}`,
-//       cancel_url: "https://cisco-client.vercel.app/pament-cancell"
-//     })
-//     res.json(session)
-//   } catch (error) {
-//     console.log(error)
-//   }
-
-// });
-
-
-// // order save to database
-// app.post("/save-order",async(req,res)=>{
-//     const orderData = req.body
-//     try{
-//       const confarmOrder = await orderModel.create(orderData)
-
-    
-//     }catch(error){
-//       console.log(error)
-//     }
-// })
 
 // app.patch("/delivery-now", async(req, res) => {
 //   const {id,status,deliverDate} = req.body
@@ -235,6 +164,4 @@ app.get('/', (req, res) => {
 // })
 
 // pending order area start
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
+
