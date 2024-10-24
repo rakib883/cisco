@@ -18,7 +18,7 @@ const Explore = () => {
    const [explorData,setExplorData] = useState([])
     useEffect(()=>{
         const incomingData = async()=>{
-            const response = await FachingData("https://cisco-sigma.vercel.app/explor")
+            const response = await FachingData("http://localhost:3000/api/product/explor")
             const result = setExplorData(response)
             return result
           }

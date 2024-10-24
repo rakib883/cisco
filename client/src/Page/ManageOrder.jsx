@@ -11,7 +11,7 @@ const ManageOrder = () => {
      useEffect(()=>{
          const deliveryProduct =async()=>{
             try{
-               const response = await FachingData("http://localhost:3000/pending-order")
+               const response = await FachingData("http://localhost:3000/api/order")
                setPendingOrder(response)
             }catch(error){
               console.log(error)

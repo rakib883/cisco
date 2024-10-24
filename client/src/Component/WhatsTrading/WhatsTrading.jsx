@@ -45,7 +45,7 @@ const [productData,setProductData] = useState([])
 useEffect(()=>{
   const incomingData = async()=>{
       try{
-        const response = await FachingData("https://cisco-sigma.vercel.app/trending-product")
+        const response = await FachingData("http://localhost:3000/api/product/trending-product")
         setProductData(response)
       }catch(error){
         console.log(error)
@@ -61,7 +61,7 @@ useEffect(()=>{
     const catagoryHandeler = async()=>{
         if(catagoryData){
             try{
-              const response = await fetch(`https://cisco-sigma.vercel.app/${catagoryData.link}`)
+              const response = await fetch(`http://localhost:3000/api/product/filter/${catagoryData.link}`)
               const result = await response.json()
               if( result && result.length > 0){
                 setProductData(result)
@@ -84,7 +84,7 @@ useEffect(()=>{
   const [color,setColor] = useState("")
     const colorFilter = async()=>{
       try{
-          const response = await FachingData(`https://cisco-sigma.vercel.app/color/filter/${color}`)
+          const response = await FachingData(`http://localhost:3000/api/product/filter/color/${color}`)
           if(response.length > 0){
             setProductData(response)
           }
@@ -101,7 +101,7 @@ useEffect(()=>{
   const [size,setSize] = useState("")
   const sizeFilterHandeler =async()=>{
       try{
-         const response = await FachingData(`https://cisco-sigma.vercel.app/product/color/${size}`)
+         const response = await FachingData(`http://localhost:3000/api/product/filter/size/${size}`)
          if(response.length > 0){
           setProductData(response)
          }

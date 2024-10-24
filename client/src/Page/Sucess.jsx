@@ -21,14 +21,14 @@ const Success = () => {
 
  const reduxData = useSelector((item)=>item?.myStore?.CartData) 
  console.log("success",reduxData )
-  useEffect(()=>{
-       fetch("https://cisco-sigma.vercel.app/order",{
-         method:"POST",
-         headers:{
-          "Content-Type" :"application/json"
-         },body:JSON.stringify(reduxData)
-       })
-  },[])
+  // useEffect(()=>{
+  //      fetch("https://cisco-sigma.vercel.app/order",{
+  //        method:"POST",
+  //        headers:{
+  //         "Content-Type" :"application/json"
+  //        },body:JSON.stringify(reduxData)
+  //      })
+  // },[])
   
 
   // Optional: You can also use this for further actions

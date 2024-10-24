@@ -9,7 +9,7 @@ const NewArrival = () => {
             <Title firstTitle="New Arrivals. REY backpacks & bags"/>
          </div>
          <div className="content">
-           <Slider dataLink="https://cisco-sigma.vercel.app/product"/>
+           <Slider dataLink="http://localhost:3000/api/product/all-product"/>
          </div>
       </div>
     </div>
