@@ -6,6 +6,4 @@ filterRouter.get("/:id",productFilter)
 filterRouter.get("/color/:id",colorFilter)
 filterRouter.get("/size/:id",sizeFilter)
      
-export{
-    filterRouter
-}
+export default filterRouter

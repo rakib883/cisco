@@ -1,4 +1,4 @@
-import { trending } from "../Conastance/index.mjs"
+import { trending } from "../Conastance/index.js"
 
 const productFilter =(req,res)=>{
     const id = req?.params?.id;

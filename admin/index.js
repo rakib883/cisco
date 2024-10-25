@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from 'dotenv';
 import productRouter from "./routers/productRouter.js"; // Correct import
-import { filterRouter } from "./routers/filterRoute.js";
+import filterRouter  from "./routers/filterRoute.js";
 import Stripe from 'stripe';
 import { databaseConnect } from "./dbConfig/database.js";
 import orderInfo from "./routers/orderInfo.js";

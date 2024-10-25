@@ -1,4 +1,4 @@
-import { blog, explor, product, productDepardment, review, trending } from "../Conastance/index.mjs";
+import { blog, explor, product, productDepardment, review, trending } from "../Conastance/index.js";
  
 const storeProduct=(req,res)=>{
          res.json(product)
