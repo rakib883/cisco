@@ -7,7 +7,7 @@ const ShopBrand = () => {
   const [incomingData,setIncomingdata] = useState([])
   useEffect(()=>{
     const incomingData = async()=>{
-       const response = await FachingData("http://localhost:3000/api/product/catagor-deperdment")
+       const response = await FachingData("https://cisco-server.vercel.app/api/product/catagor-deperdment")
        const result = setIncomingdata(response)
        return result
     }

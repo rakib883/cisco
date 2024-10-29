@@ -84,7 +84,7 @@ const Header = () => {
     useEffect(()=>{
         const filterData = async()=>{
            try{
-            const response = await FachingData("http://localhost:3000/api/product/all-product")
+            const response = await FachingData("https://cisco-server.vercel.app/api/product/all-product")
             setProduct(response)
            }catch(error){
             console.log(error)

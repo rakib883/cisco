@@ -11,7 +11,7 @@ const Blogarea = () => {
     const [blog,setBlog] = useState([])
    useEffect(()=>{
             const incomingData = async()=>{
-                const response =await FachingData("http://localhost:3000/api/product/blog")
+                const response =await FachingData("https://cisco-server.vercel.app/api/product/blog")
                 setBlog(response)
         
         }

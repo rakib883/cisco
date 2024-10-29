@@ -8,7 +8,7 @@ const Reviwe = () => {
   const [review,setReview] = useState([])
   useEffect(()=>{
       const incomingData = async()=>{
-        const response =await FachingData("http://localhost:3000/api/product/review")
+        const response =await FachingData("https://cisco-server.vercel.app/api/product/review")
         setReview(response)
        }
     incomingData()

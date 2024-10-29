@@ -11,7 +11,7 @@ const ManageOrder = () => {
      useEffect(()=>{
          const deliveryProduct =async()=>{
             try{
-               const response = await FachingData("http://localhost:3000/api/order")
+               const response = await FachingData("https://cisco-server.vercel.app/api/order")
                setPendingOrder(response)
             }catch(error){
               console.log(error)
@@ -37,7 +37,7 @@ const ManageOrder = () => {
          toast.error("please delivery date")
        }else{
           try{
-            const response = await  fetch(`http://localhost:3000/delivery-now`,{
+            const response = await  fetch(`https://cisco-server.vercel.app/delivery-now`,{
                  method:"PATCH",
                  headers:{
                     "Content-Type":"application/json"

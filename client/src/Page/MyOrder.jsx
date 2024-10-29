@@ -11,7 +11,7 @@ const MyOrder = () => {
     useEffect(()=>{
          const allProductHandeler = async ()=>{
             try{
-                const response = await FachingData(`http://localhost:3000/api/all-order/${currentUser}`)
+                const response = await FachingData(`https://cisco-server.vercel.app/api/all-order/${currentUser}`)
                 setAllProduct(response)
             }catch(error){
                 console.log(error)

@@ -8,7 +8,7 @@ const BestSeller = () => {
                 <Title  firstTitle="Best Sellers.Best selling of the month" />
             </div>
             <div className="product">
-                <Slider dataLink="http://localhost:3000/api/product/store"/>
+                <Slider dataLink="https://cisco-server.vercel.app/api/product/store"/>
             </div>
         </div>
     </div>

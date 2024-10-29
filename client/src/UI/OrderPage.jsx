@@ -139,7 +139,7 @@ const OrderPage = () => {
 
     try {
       const stripe = await loadStripe("pk_test_51PWscOL3BkBJk9RpVuFlO4f7SrTvDNHnFCVae0x6buv1S703qEvd3iEnDfqVQU9Iz1z6WDhV3M8IfhS1Za0O8v1z00UzkBSn5i")
-      const response = await fetch("http://localhost:3000/create-checkout-session", {
+      const response = await fetch("https://cisco-server.vercel.app/create-checkout-session", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -153,7 +153,7 @@ const OrderPage = () => {
         sessionId: session.id
       })
 
-      fetch("http://localhost:3000/api/order",{
+      fetch("https://cisco-server.vercel.app/api/order",{
         method:"POST",
         headers:{
           "Content-Type" : "application/json"

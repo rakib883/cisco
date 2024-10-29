@@ -15,7 +15,7 @@ const Women = () => {
    useEffect(()=>{
     const incomingData = async()=>{
         try{
-            const response = await FachingData("http://localhost:3000/api/product/store")
+            const response = await FachingData("https://cisco-server.vercel.app/api/product/store")
             setProduct(response)
         }catch(error){
             console.log(error)
@@ -31,7 +31,7 @@ const [dataCatagor,setDataataGory] = useState("")
 const catagoryFilterHandel = async(catagory)=>{
     try{
        if(catagory){
-        const response = await fetch(`http://localhost:3000/api/product/filter/${catagory}`)
+        const response = await fetch(`https://cisco-server.vercel.app/api/product/filter/${catagory}`)
         const result = await response.json()
         if(result && result.length > 0){
             setProduct(result)
@@ -50,7 +50,7 @@ const [colorFilterData,setColorFilter] = useState("")
 const colorFilterHandeler = async(color)=>{
    try{
       if(color){
-        const response = await FachingData(`http://localhost:3000/api/product/filter/color/${color}`)
+        const response = await FachingData(`https://cisco-server.vercel.app/api/product/filter/color/${color}`)
         setProduct(response)
       }
    }catch(error){
@@ -64,7 +64,7 @@ const [productSizeState,setProductSizeState] = useState("")
 const ProductSizeHandeler =async(color)=>{
     try{
         if(color){
-           const response = await FachingData(`http://localhost:3000/api/product/filter/size/${color}`)
+           const response = await FachingData(`https://cisco-server.vercel.app/api/product/filter/size/${color}`)
            setProduct(response)
         }
     }catch(error){
